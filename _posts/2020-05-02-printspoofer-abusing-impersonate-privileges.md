@@ -1,5 +1,5 @@
 ---
-title: "Printer Spoofer - Abusing Impersonation Privileges on Windows 10 and Server 2019" 
+title: "PrintSpoofer - Abusing Impersonation Privileges on Windows 10 and Server 2019" 
 layout: "post"
 ---
 
