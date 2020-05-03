@@ -153,6 +153,8 @@ And here we go! After starting my server application as a local administrator (a
 
 Once the client is connected, you get an __impersonation token__ with an __impersonation level__ of 2, i.e. `SecurityImpersonation`. In addition, `DoSomethingAsImpersonatedUser()` returned successfully, which means that we can run arbitrary code in the security context of this client. :ok_hand:
 
+> __Note:__ perhaps you noticed that I used the path `\\localhost\pipe\foo123`, instead of `\\.\pipe\foo123`, which is the _real_ name of the pipe. For the impersonation to succeed, the server must first read data from the pipe. If the client opens the path using `\\.\pipe\foo123` as the pipe's path, no data is written and `ImpersonateNamedPipeClient()` fails. On the other hand, if the client opens the pipe using `\\HOSTNAME\pipe\foo123`, `ImpersonateNamedPipeClient()` succeeds. Don't ask me why, I have no idea...
+
 <p align="center">
   <img src="/assets/posts/2020-05-02-printspoofer-abusing-impersonate-privileges/04_simple-impersonation-result.png">
 </p>
@@ -297,6 +299,8 @@ Although we have the `SeImpersonatePrivilege` privilege, we get the exact same e
 </p>
 
 The hexadecimal value `0x110080` is actually `SECURITY_SQOS_PRESENT | SECURITY_IDENTIFICATION | FILE_ATTRIBUTE_NORMAL`.
+
+> __Note:__ it should be noted that this protection isn't bulletproof though. It just makes things harder for an attacker.
 
 As a conclusion, Microsoft treated this case as a regular vulnerability, assigned it a CVE ID and even wrote a detailed security bulletin. Though, times have changed a lot! Nowadays, if you try to report such a vulnerability, they will reply that elevation of privilege by leveraging impersonation privileges is an _expected behavior_. They probably realized that it's a fight they cannot win, at least not this way. Like [James Forshaw](https://twitter.com/tiraniddo) once said about this kind of exploit on Twitter: "_they'd argue that you might as well be SYSTEM if you've got impersonate privilege as that's kind of the point. They can make it harder to get a suitable token but __it's just a game of whack-a-mole as there will always be something else you can exploit___" ([source](https://twitter.com/tiraniddo/status/1203069035983720449)).
 
