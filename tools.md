@@ -8,7 +8,6 @@ layout: "post"
 <link rel="stylesheet" href="/assets/highlight/styles/monokai-sublime.css">
 <script src="/assets/highlight/highlight.pack.js"></script>
 <script>
-
     var g_style_url = "/assets/highlight/styles/";
 
     hljs.initHighlightingOnLoad(); // Initialize highlight.js 
@@ -382,48 +381,29 @@ layout: "post"
 
 <div>
     <label for="wf_url">URL</label>
-    <input name="wf_url" id="wf_url" value="http://127.0.0.1/foo123/" style="width:100%" onchange="wfUpdateCode()" />
+    <input name="wf_url" id="wf_url" value="http://127.0.0.1/foo123/" style="width:100%" onchange="wfUpdateView()" />
     <label for="wf_folder">Log folder</label>
-    <input name="wf_folder" id="wf_folder" style="width:100%" onchange="wfUpdateCode()" value="./recon/" />
+    <input name="wf_folder" id="wf_folder" style="width:100%" onchange="wfUpdateView()" value="./recon/" />
     <label for="wf_wordlist">Wordlist</label>
-    <select id="wf_wordlist" style="width:100%" onchange="wfUpdateCode()">
-        <!-- <option value="wf_wordlist_empty"></option>
-        <option value="wf_wordlist_dirb-common">/usr/share/dirb/wordlists/common.txt</option>
-        <option value="wf_wordlist_dirbuster-medium">/usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt</option> -->
+    <select id="wf_wordlist" style="width:100%" onchange="wfUpdateView()">
     </select>
     Options
     <div>
         <form id="wf_opt_checkboxes">
-            <input type="checkbox" value="" id="wf_opt_log_results" checked onchange="wfUpdateCode()">
+            <input type="checkbox" value="" id="wf_opt_log_results" checked onchange="wfUpdateView()">
             <label for="wf_opt_log_results" data-toggle="tooltip" title="">Log results to a file</label>
-            <input type="checkbox" value="" id="wf_opt_runasroot" onchange="wfUpdateCode()">
+            <input type="checkbox" value="" id="wf_opt_runasroot" onchange="wfUpdateView()">
             <label for="wf_opt_runasroot" data-toggle="tooltip" title="">Run as root</label>
+            <input type="checkbox" value="" id="wf_opt_proxy" onchange="wfUpdateView()">
+            <label for="wf_opt_proxy" data-toggle="tooltip" title="">Proxy tool</label>
+            <input type="hidden" id="wf_opt_proxy_tool" value="proxychains" onchange="wfUpdateView()">
         </form>
     </div>
-    Extentions
+    Extensions
     <div>
         <form id="wf_ext_checkboxes">
-            <input type="checkbox" value="" id="wf_ext_basic" onchange="wfUpdateCode()">
-            <label for="wf_ext_basic" data-toggle="tooltip" title="">Basic</label>
-            <input type="checkbox" value="" id="wf_ext_php" onchange="wfUpdateCode()">
-            <label for="wf_ext_php" data-toggle="tooltip" title="">PHP</label>
-            <input type="checkbox" value="" id="wf_ext_iis" onchange="wfUpdateCode()">
-            <label for="wf_ext_iis" data-toggle="tooltip" title="">IIS</label>
-            <input type="checkbox" value="" id="wf_ext_java" onchange="wfUpdateCode()">
-            <label for="wf_ext_java" data-toggle="tooltip" title="">Java</label>
-            <input type="checkbox" value="" id="wf_ext_python" onchange="wfUpdateCode()">
-            <label for="wf_ext_python" data-toggle="tooltip" title="">Python</label>
-            <input type="checkbox" value="" id="wf_ext_ruby" onchange="wfUpdateCode()">
-            <label for="wf_ext_ruby" data-toggle="tooltip" title="">Ruby</label>
-            <input type="checkbox" value="" id="wf_ext_system" onchange="wfUpdateCode()">
-            <label for="wf_ext_system" data-toggle="tooltip" title="">System</label>
-            <input type="checkbox" value="" id="wf_ext_db" onchange="wfUpdateCode()">
-            <label for="wf_ext_db" data-toggle="tooltip" title="">Database</label>
-            <input type="checkbox" value="" id="wf_ext_misc" onchange="wfUpdateCode()">
-            <label for="wf_ext_misc" data-toggle="tooltip" title="">Misc</label>
         </form>
     </div>
-    <!--<pre id="wf_code_result"></pre>-->
     <div style="overflow:auto">
         <pre id="wf_code_result"></pre>
     </div>
@@ -451,16 +431,27 @@ layout: "post"
 
     const global_tools = [ "dirb", "dirsearch", "wfuzz", "gobuster", "nikto" ];
 
-    class Params {
+    class WebFuzzingParams {
 
         constructor(url) {
             this.url = url;
+            this.validUrl = this.isValidUrl();
             this.logFolder = "";
             this.wordlistId = "";
             this.extensions = [];
             this.logResults = true;
             this.runAsRoot = false;
+            this.useSocksTool = false;
             this.socksTool = "";
+        }
+
+        isValidUrl() {
+            try {
+                var tmpUrl = new URL(this.url);
+                return true;
+            } catch {
+                return false;
+            }
         }
 
         extensionsToString(prefix, seperator) {
@@ -475,109 +466,85 @@ layout: "post"
             return result;
         }
 
-        urlToFileName() {
+        generateLogPath(tool) {
             var result = "";
-            try {
-                urlObj = new URL(this.url);
-                if (urlObj.port == "") {
-                    if (urlObj.protocol == "http:") {
-                        result += "-80"; 
-                    } else if (url.protocol == "https:") {
-                        result += "-443";
-                    }
-                } else {
-                    result += "-" + url.port;
+            
+            if (this.logFolder != "") {
+                result += this.logFolder;
+                if (this.logFolder[this.logFolder.length - 1] != '/') {
+                    result += "/";
                 }
+            }
+            
+            result += wfHelperUrlToFileName(this.url);
+            result += tool == "" ? "_unknown" : "_" + tool;
+            result += this.wordlistId == "wf_wordlist_empty" ? "_wl-default" : "_wl-" + this.wordlistId.split('_')[this.wordlistId.split('_').length - 1];
+            result += ".log"
+            
+            return result;
+        }
 
-                var path = urlObj.pathname;
-                if (path.length > 1) {
-                    if (path[path.length - 1] == '/') {
-                        path = path.slice(0, path.length - 1);
-                    }
-                    result += path.split('/').join('-');
-                }
+        generateCommands() {
+            var result = "";
 
+            if (this.validUrl === false) {
                 return result;
-            } catch {
-                console.log("Invalid URL: " + this.url);
             }
+
+            var wordlistPath = global_wordlists[this.wordlistId];
+
+            for (var i=0; i<global_tools.length; i++) {
+                var tool = global_tools[i];
+
+                var logpath = "";
+                if (this.logResults == true) {
+                    logpath = this.generateLogPath(tool);
+                }
+
+                var proxyTool = "";
+                if (this.useSocksTool) {
+                    proxyTool = this.socksTool;
+                }
+                
+                var command = wfHelperFormatCommand(tool, this.url, logpath, wordlistPath, this.extensions, proxyTool, this.runAsRoot);
+                if (command != "") {
+                    result += command + "\n";
+                }
+            }
+            return result;
         }
     }
 
-    function wfUrlObjToText(url) {
-
-        var result = url.hostname;
-
-        if (url.port == "") {
-            if (url.protocol == "http:") {
-                result += "-80"; 
-            } else if (url.protocol == "https:") {
-                result += "-443";
-            }
-        } else {
-            result += "-" + url.port;
-        }
-
-        var path = url.pathname;
-        if (path.length > 1) {
-            if (path[path.length - 1] == '/') {
-                path = path.slice(0, path.length - 1);
-            }
-            result += path.split('/').join('-');
-        }
-
-        return result;
-    }
-
-    function wfUrlToObject(url) {
-
-        if (url == "") {
-            console.log("wfUrlToObject() => Input URL is empty");
-            return null;
-        }
-        try {
-            return new URL(url);
-        } catch {
-            console.log("wfUrlToObject() => Invalid URL");
-            return null;
-        }
-    }
-
-    function wfGenerateLogPath(urlObj, folder, wordlist, tool) {
-
+    function wfHelperUrlToFileName(url) {
         var result = "";
-
-        if (folder != "") {
-            result += folder;
-            if (folder[folder.length - 1] != '/') {
-                result += "/";
+        try {
+            urlObj = new URL(url);
+            result += urlObj.hostname;
+            if (urlObj.port == "") {
+                if (urlObj.protocol == "http:") {
+                    result += "-80"; 
+                } else if (urlObj.protocol == "https:") {
+                    result += "-443";
+                }
+            } else {
+                result += "-" + urlObj.port;
             }
+
+            var path = urlObj.pathname;
+            if (path.length > 1) {
+                if (path[path.length - 1] == '/') {
+                    path = path.slice(0, path.length - 1);
+                }
+                result += path.split('/').join('-');
+            }
+
+            return result;
+        } catch {
+            console.log("Invalid URL: " + url);
         }
-        result += tool == "" ? "unknown" : tool;
-        result += wordlist == "wf_wordlist_empty" ? "_default" : "_" + wordlist.split('_')[wordlist.split('_').length - 1];
-        result += "_" + wfUrlObjToText(urlObj);
-        result += ".log"
-        
-        return result;
     }
 
-    function wfGetExtensionList() {
-
-        var result = [];
-
-        var ids = Object.keys(global_extensions);
-        for (var i=0; i<ids.length; i++) {
-            var checkbox = document.getElementById(ids[i]);
-            if (checkbox.checked) {
-                result = result.concat(global_extensions[ids[i]].split(','));
-            }
-        }
-
-        return result;
-    }
-
-    function wfPrepareExtensionList(extensions, prefix, seperator) {
-
+    function wfHelperPrepareExtensionList(extensions, prefix, seperator) {
         var result = "";
         for (var i=0; i<extensions.length; i++) {
             ext = extensions[i];
@@ -586,50 +553,66 @@ layout: "post"
                 result += seperator;
             }
         }
-
         return result;
     }
 
-    function wfFormatCommand(tool, url, logpath, wordlist, extensions) {
+    function wfHelperGetExtensionList() {
+        var result = [];
+        var ids = Object.keys(global_extensions);
+        for (var i=0; i<ids.length; i++) {
+            var checkbox = document.getElementById(ids[i]);
+            if (checkbox.checked) {
+                result = result.concat(global_extensions[ids[i]].split(','));
+            }
+        }
+        return result;
+    }
+
+    function wfHelperFormatCommand(tool, url, logpath, wordlist, extensions, proxy, asroot) {
 
         var result = "";
+        var toReturn = false;
 
-        // console.log(tool);
-        // console.log(url);
-        // console.log(logpath);
-        // console.log(wordlist);
-        // console.log(extensions);
+        if (asroot) {
+            result += "sudo ";
+        }
+
+        if (proxy != "") {
+            result += proxy + " ";
+        }
 
         if (tool == "dirb") {
 
             // dirb has no particular requirements
-            result += "# https://gitlab.com/kalilinux/packages/dirb\n";
+            // result += "# https://gitlab.com/kalilinux/packages/dirb\n";
             result += "dirb";
-            result += extensions.length == 0 ? "" : " -X '" + wfPrepareExtensionList(extensions, '.', ',') + ",,'";
+            result += extensions.length == 0 ? "" : " -X '" + wfHelperPrepareExtensionList(extensions, '.', ',') + ",,'";
             result += logpath.length == 0 ? "" : " -o '" + logpath + "'";
             result += " '" + url + "'";
             result += wordlist.length == 0 ? "" : " '" + wordlist + "'";
+            toReturn = true;
 
         } else if (tool == "dirsearch") {
 
             // dirsearch requires an extension list
             if (extensions.length != 0) {
-                result = "# https://github.com/maurosoria/dirsearch\n";
+                // result = "# https://github.com/maurosoria/dirsearch\n";
                 result += "dirsearch.py -e";
                 result += " '" + extensions.join(',') + "'";
                 result += wordlist.length == 0 ? "" : " -w '" + wordlist + "'";
                 result += logpath == "" ? "" : " --plain-text-report '" + logpath + "'";
                 result += " -u '" + url + "'";
+                toReturn = true;
             }
 
         } else if (tool == "wfuzz") {
 
             // wfuzz requires a wordlist
             if (wordlist != "") {
-                result = "# https://github.com/xmendez/wfuzz/\n";
+                // result = "# https://github.com/xmendez/wfuzz/\n";
                 result += "wfuzz -c";
                 result += " -z 'file," + wordlist + "'";
-                result += extensions.length == 0 ? "" : " -z 'list," + wfPrepareExtensionList(extensions, '.', '-') + "-'";
+                result += extensions.length == 0 ? "" : " -z 'list," + wfHelperPrepareExtensionList(extensions, '.', '-') + "-'";
                 result += logpath == "" ? "" : " -f '" + logpath + "'";
                 result += " --hc 404";
                 result += " '" + url;
@@ -637,81 +620,53 @@ layout: "post"
                 result += "FUZZ";
                 result += extensions.length == 0 ? "" : "FUZ2Z";
                 result += "'";
+                toReturn = true;
             }
 
         } else if (tool == "gobuster") {
 
             // gobuster requires a wordlist
             if (wordlist != "") {
-                result = "# https://github.com/OJ/gobuster\n";
+                // result = "# https://github.com/OJ/gobuster\n";
                 result += "gobuster dir -e";
                 result += "  -w '" + wordlist + "'";
-                result += extensions.length == 0 ? "" : " -x '" + wfPrepareExtensionList(extensions, '.', ',') + ",,'";
+                result += extensions.length == 0 ? "" : " -x '" + wfHelperPrepareExtensionList(extensions, '.', ',') + ",,'";
                 result += logpath.length == 0 ? "" : " -o '" + logpath + "'";
                 result += " -u '" + url + "'";
+                toReturn = true;
             }
 
         } else if (tool == "nikto") {
 
-            result = "# https://www.cirt.net/Nikto2\n";
+            // result = "# https://www.cirt.net/Nikto2\n";
             result += "nikto -C all";
             result += logpath.length == 0 ? "" : " -output '" + logpath + "' -Format txt";
             result += " -host '" + url + "'";
+            toReturn = true;
         }
 
-        return result;
+        return toReturn ? result : "";
     }
 
-    function wfGenerateCommands(urlObj, folder, wordlist, extensions, log) {
+    function wfUpdateView() {
 
-        var result = "";
-        var wordlistPath = global_wordlists[wordlist];
+        wfHelperUpdateProxyOption();
+        wfHelperUpdateCodeSection();
 
-        for (var i=0; i<global_tools.length; i++) {
-            var tool = global_tools[i];
-
-            var logpath = "";
-            if (log == true) {
-                logpath = wfGenerateLogPath(urlObj, folder, wordlist, tool);
-            }
-            
-            var command = wfFormatCommand(tool, urlObj.toString(), logpath, wordlistPath, extensions);
-            if (command != "") {
-                result += command + "\n";
-            }
-        }
-
-        return result;
     }
 
-    function wfUpdateCode() {
+    function wfHelperUpdateCodeSection() {
 
-        var wf_url = document.getElementById("wf_url").value;
-        var wf_folder = document.getElementById("wf_folder").value;
-        var wf_folder_checkbox = document.getElementById("wf_opt_log_results");
-        var wf_wordlist = document.getElementById("wf_wordlist").value;
-        var wf_wordlist_select = document.getElementById("wf_wordlist");
-        // console.log(wf_wordlist);
-
-        console.log(document.getElementById("wf_wordlist"))
-        //alert(sel.options[sel.selectedIndex].text);
-        console.log(wf_wordlist_select.options[wf_wordlist_select.selectedIndex].text)
-
-        var url = wfUrlToObject(wf_url);
-        if (url == null) { return }
-
-        var params = new Params(wf_url);
+        var params = new WebFuzzingParams(document.getElementById("wf_url").value);
         params.logFolder = document.getElementById("wf_folder").value;
         params.wordlistId = document.getElementById("wf_wordlist").value;
-        params.extensions = wfGetExtensionList();
+        params.extensions = wfHelperGetExtensionList();
         params.logResults = document.getElementById("wf_opt_log_results").checked;
         params.runAsRoot = document.getElementById("wf_opt_runasroot").checked;
-        // console.log(params)
+        params.useSocksTool = document.getElementById("wf_opt_proxy").checked;
+        params.socksTool = document.getElementById("wf_opt_proxy_tool").value;
 
-
-        var extensions = wfGetExtensionList();
-        var log_results = wf_folder_checkbox.checked;
-        var commands = wfGenerateCommands(url, wf_folder, wf_wordlist, extensions, log_results);
+        commands = params.generateCommands();
 
         var wf_code = document.getElementById("wf_code_result");
         wf_code.className = "";
@@ -719,10 +674,18 @@ layout: "post"
         wf_code.classList.add("bash");
         wf_code.innerHTML = escapeHtml(commands);
         hljs.highlightBlock(wf_code);
-
     }
 
-    function wfUpdateWordlistDropdown() {
+    function wfHelperUpdateProxyOption() {
+
+        if (document.getElementById("wf_opt_proxy").checked) {
+            document.getElementById("wf_opt_proxy_tool").type = "text";
+        } else {
+            document.getElementById("wf_opt_proxy_tool").type = "hidden";
+        }
+    }
+
+    function wfHelperCreateWordlistDropdown() {
 
         var wf_wordlist_select = document.getElementById("wf_wordlist");
 
@@ -734,23 +697,30 @@ layout: "post"
         }
     }
 
-    function wfUpdateCheckboxTooltips() {
+    function wfHelperCreateExtensionCheckboxes() {
+        
+        var wf_checkbox_form = document.getElementById("wf_ext_checkboxes");
 
-        var labels = document.getElementsByTagName("label");
-        for (var i=0; i<labels.length; i++) {
+        for (const key of Object.keys(global_extensions)) {
 
-            var labelFor = labels[i].htmlFor;
+            var checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.id = key;
+            checkbox.value = "";
+            checkbox.onchange = wfUpdateView;
+            wf_checkbox_form.appendChild(checkbox);
 
-            if (labelFor.startsWith("wf_ext_")) {
-                var extensionList = global_extensions[labelFor];
-                labels[i].title = extensionList;
-            }
+            var label = document.createElement("label");
+            label.htmlFor = key;
+            label.title = global_extensions[key];
+            label.innerHTML = key.split('_')[key.split('_').length - 1];
+            wf_checkbox_form.appendChild(label);
         }
     }
 
-    wfUpdateWordlistDropdown();
-    wfUpdateCheckboxTooltips();
-    wfUpdateCode();
+    wfHelperCreateWordlistDropdown();
+    wfHelperCreateExtensionCheckboxes();
+    wfUpdateView();
 
 </script>
 
