@@ -377,7 +377,7 @@ layout: "post"
 
 ---
 
-## Web fuzzing
+## Web Fuzzing
 
 <div>
     <label for="wf_url">URL</label>
@@ -421,8 +421,8 @@ layout: "post"
         "wf_ext_basic": "/,html,js",
         "wf_ext_php": "php,php~",
         "wf_ext_iis": "asp,aspx,aspx~",
-        "wf_ext_java": "jar,jsp,jsp~",
-        "wf_ext_python": "py,py~",
+        "wf_ext_java": "jar,jsp,jsp~,do,properties",
+        "wf_ext_python": "py,py~,pyc",
         "wf_ext_ruby": "rb,rb~",
         "wf_ext_system": "bak,bkp,backup,old,tar,tar.bz2,tar.gz,rar,conf,config,swp,swp~,cache",
         "wf_ext_db": "db,sql,sql~,sql.gz,sql.tar.gz",
@@ -598,7 +598,7 @@ layout: "post"
             if (extensions.length != 0) {
                 // result = "# https://github.com/maurosoria/dirsearch\n";
                 result += "dirsearch.py -e";
-                result += " '" + extensions.join(',') + "'";
+                result += " '" + extensions.join(',') + "' -f";
                 result += wordlist.length == 0 ? "" : " -w '" + wordlist + "'";
                 result += logpath == "" ? "" : " --plain-text-report '" + logpath + "'";
                 result += " -u '" + url + "'";
