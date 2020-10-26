@@ -418,7 +418,8 @@ layout: "post"
     };
 
     const global_extensions = {
-        "wf_ext_basic": "/,html,js",
+        "wf_ext_slash": "/",
+        "wf_ext_static": "html,js",
         "wf_ext_php": "php,php~",
         "wf_ext_iis": "asp,aspx,aspx~",
         "wf_ext_java": "jar,jsp,jsp~,do,properties",
