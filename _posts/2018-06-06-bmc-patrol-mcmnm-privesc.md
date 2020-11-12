@@ -1,5 +1,5 @@
 ---
-title: "CVE-2017-13130 BMC Patrol 'mcmnm' - Privilege Escalation via a Vulnerable SUID Binary"
+title: "CVE-2017-13130 - BMC Patrol 'mcmnm' - Privilege Escalation via a Vulnerable SUID Binary"
 layout: "post"
 ---
 
