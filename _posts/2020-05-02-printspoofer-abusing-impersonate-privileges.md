@@ -10,7 +10,7 @@ Over the last few years, tools such as [RottenPotato](https://github.com/foxglov
 
 Please note that I used the term "new tool" and not "new technique". If you read this article in the hope of learning a new leet technique, you will be disappointed. In fact, I'm going to discuss two very well-known techniques that can be combined together in order to achieve privilege escalation from `LOCAL SERVICE` or `NETWORK SERVICE` to `SYSTEM`. To my knowledge, I think there hasn't been any public mention about using this particular trick in this context but, of course, I might be wrong. :roll_eyes:
 
-> __Note:__ I developed the tool and started preparing this blog post prior to the publication of this blog post by James Forshaw: [Sharing a Logon Session a Little Too Much](https://www.tiraniddo.dev/2020/04/sharing-logon-session-little-too-much.html). I could have chosen to _cancel_ the publication of my post but I eventually realized that it was still worth it. Please keep this in mind as you read this post.
+__Note:__ I developed the tool and started preparing this blog post prior to the publication of this blog post by James Forshaw: [Sharing a Logon Session a Little Too Much](https://www.tiraniddo.dev/2020/04/sharing-logon-session-little-too-much.html). I could have chosen to _cancel_ the publication of my post but I eventually realized that it was still worth it. Please keep this in mind as you read this post.
 
 ## Impersonation Privileges
 
@@ -48,7 +48,7 @@ During the authentication process, all the messages are relayed between the clie
 
 Unfortunately, due to some core changes, this technique doesn't work anymore on Windows 10 because the underlying COM connection from the target service to the "Storage" is now allowed only on TCP port 135.
 
-> __Note:__ as mentionned by [@decoder_it](https://twitter.com/decoder_it) in this blog [post](https://decoder.cloud/2019/12/06/we-thought-they-were-potatoes-but-they-were-beans/), this restriction can actually be bypassed but the resulting token cannot be used for impersonation.
+__Note:__ as mentionned by [@decoder_it](https://twitter.com/decoder_it) in this blog [post](https://decoder.cloud/2019/12/06/we-thought-they-were-potatoes-but-they-were-beans/), this restriction can actually be bypassed but the resulting token cannot be used for impersonation.
 
 Now, what are the alternatives? RPC isn't the only protocol that can be used in such a relaying scenario, but I won't discuss this here. Instead, __I'll discuss an old school technique involving pipes__. As I said in the _Foreword_, there is nothing groundbreaking about this but, as always, I like to present things my own way, so I'll refresh some basic knowledge even though that may sound trivial for most people.
 
@@ -153,7 +153,7 @@ And here we go! After starting my server application as a local administrator (a
 
 Once the client is connected, you get an __impersonation token__ with an __impersonation level__ of 2, i.e. `SecurityImpersonation`. In addition, `DoSomethingAsImpersonatedUser()` returned successfully, which means that we can run arbitrary code in the security context of this client. :ok_hand:
 
-> __Note:__ perhaps you noticed that I used the path `\\localhost\pipe\foo123`, instead of `\\.\pipe\foo123`, which is the _real_ name of the pipe. For the impersonation to succeed, the server must first read data from the pipe. If the client opens the path using `\\.\pipe\foo123` as the pipe's path, no data is written and `ImpersonateNamedPipeClient()` fails. On the other hand, if the client opens the pipe using `\\HOSTNAME\pipe\foo123`, `ImpersonateNamedPipeClient()` succeeds. Don't ask me why, I have no idea...
+__Note:__ perhaps you noticed that I used the path `\\localhost\pipe\foo123`, instead of `\\.\pipe\foo123`, which is the _real_ name of the pipe. For the impersonation to succeed, the server must first read data from the pipe. If the client opens the path using `\\.\pipe\foo123` as the pipe's path, no data is written and `ImpersonateNamedPipeClient()` fails. On the other hand, if the client opens the pipe using `\\HOSTNAME\pipe\foo123`, `ImpersonateNamedPipeClient()` succeeds. Don't ask me why, I have no idea...
 
 <p align="center">
   <img src="/assets/posts/2020-05-02-printspoofer-abusing-impersonate-privileges/04_simple-impersonation-result.png">
@@ -300,7 +300,7 @@ Although we have the `SeImpersonatePrivilege` privilege, we get the exact same e
 
 The hexadecimal value `0x110080` is actually `SECURITY_SQOS_PRESENT | SECURITY_IDENTIFICATION | FILE_ATTRIBUTE_NORMAL`.
 
-> __Note:__ it should be noted that this protection isn't bulletproof though. It just makes things harder for an attacker.
+__Note:__ it should be noted that this protection isn't bulletproof though. It just makes things harder for an attacker.
 
 As a conclusion, Microsoft treated this case as a regular vulnerability, assigned it a CVE ID and even wrote a detailed security bulletin. Though, times have changed a lot! Nowadays, if you try to report such a vulnerability, they will reply that elevation of privilege by leveraging impersonation privileges is an _expected behavior_. They probably realized that it's a fight they cannot win, at least not this way. Like [James Forshaw](https://twitter.com/tiraniddo) once said about this kind of exploit on Twitter: "_they'd argue that you might as well be SYSTEM if you've got impersonate privilege as that's kind of the point. They can make it harder to get a suitable token but __it's just a game of whack-a-mole as there will always be something else you can exploit___" ([source](https://twitter.com/tiraniddo/status/1203069035983720449)).
 

@@ -39,7 +39,7 @@ While `Process Monitor` was running in the background, it captured some attempts
 
 Knowing this, the corresponding service can easily be found with the following PowerShell command for example. In this case, it is __DiagTrack__. 
 
-> __Note:__ I could also have used the PID of the process and looked for it in the task manager for example. The downside of this method is that the process could terminate before you have the time to check. 
+__Note:__ I could also have used the PID of the process and looked for it in the task manager for example. The downside of this method is that the process could terminate before you have the time to check. 
 
 <p align="center">
   <img src="/assets/posts/2019-08-17-usodllloader-part1//04_powershell-wmi-service-details.png">
@@ -55,7 +55,7 @@ The Event Properties in `Process Monitor` revealed a bit more about how the DLL 
 
 To be sure I was on the right track, I opened the last DLL in IDA and looked for occurences of `windowscoredeviceinfo.dll`. The `Strings` subview is really great for this kind of use case. 
 
-> __Note:__ you have to configure the view to include unicode strings because it's not the default setting in IDA... 
+__Note:__ you have to configure the view to include unicode strings because it's not the default setting in IDA... 
 
 <p align="center">
   <img src="/assets/posts/2019-08-17-usodllloader-part1//06_ida-dcntel-strings-windowscoredeviceinfo.png">
@@ -202,7 +202,7 @@ The corresponding service is `BrokerInfrastructure`, which "handles background t
 
 Let's see what we can learn from `Process Monitor`. Accessing the properties of an event related to this process and, going to the `Stack` tab will show the following. We can see that there is a lot of references to `rpcrt4.dll` and `combase.dll`. This is potentially a very good news! Indeed, it probably means that this process was triggered by a COM-related RPC call. If so, it might also be possible to trigger it as a regular user, depending on the permissions of the remote object and interface. 
 
-> __Note__: COM is used for Inter Process Communications (IPC). Therefore it can provide the ability for a low privilege process to run high privilege actions thanks to RPC calls (more details about this in the second part...).
+__Note__: COM is used for Inter Process Communications (IPC). Therefore it can provide the ability for a low privilege process to run high privilege actions thanks to RPC calls (more details about this in the second part...).
 
 <p align="center">
   <img src="/assets/posts/2019-08-17-usodllloader-part1//16_Procmon-Stack-combase-rpcrt4.png">
@@ -232,7 +232,7 @@ We also learn that the "USO client" (`usoclient.exe`) is the tool that replaced 
   <img src="/assets/posts/2019-08-17-usodllloader-part1//19_usoclient-unofficial-doc-intro.png">
 </p>
 
-> __Note:__ they even quoted a reply from a Microsoft employee on TechNet, which says that you shouldn't run this tool directly. This is getting interesting. We love to do what we are not supposed to, don't we?! :)
+__Note:__ they even quoted a reply from a Microsoft employee on TechNet, which says that you shouldn't run this tool directly. This is getting interesting. We love to do what we are not supposed to, don't we?! :)
 
 The documentation lists all the options you can use. So, I tried to play around with the `usoclient` command to see if I could trigger the same behavior I observed previously. I started with `StartScan` which seemed to be the less invasive option according to the description. It is supposed to trigger a scan that will simply fetch available updates. 
 
@@ -246,7 +246,7 @@ With `Process Monitor` running in the background as usual, I ran the command and
 
 With a simple command, we are able to have the Update Orchestrator service run arbitrary code as `NT AUTHORITY\System`. Another benefit of this method is the fact that we can run our code outside of `DllMain` (i.e. outside of the loader lock).
 
-> __Note:__ According to Microsoft, running code within DllMain should be avoided because it _can cause an application to deadlock_. More info here: [Dynamic-Link Library Best Practices](https://docs.microsoft.com/en-us/windows/win32/dlls/dynamic-link-library-best-practices).
+__Note:__ According to Microsoft, running code within DllMain should be avoided because it _can cause an application to deadlock_. More info here: [Dynamic-Link Library Best Practices](https://docs.microsoft.com/en-us/windows/win32/dlls/dynamic-link-library-best-practices).
 
 However, this technique also comes with some drawbacks:
 - It requires a privileged file creation or move operation that you're are able to control. 

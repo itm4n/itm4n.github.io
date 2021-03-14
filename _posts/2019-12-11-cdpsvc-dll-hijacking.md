@@ -22,7 +22,7 @@ Therfore, following the __DLL search order of Windows__, it will first try to lo
   <img src="/assets/posts/2019-12-11-cdpsvc-dll-hijacking/04_procmon.png">
 </p>
 
-> __Note:__ the last `PATH` entry varies depending on the current user profile. This means that you will always see this folder as writable if you look at your own `PATH` variable in Windows 10. If you want to see the `PATH` variable of the System, you can check the registry with the following command: `reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path`. 
+__Note:__ the last `PATH` entry varies depending on the current user profile. This means that you will always see this folder as writable if you look at your own `PATH` variable in Windows 10. If you want to see the `PATH` variable of the System, you can check the registry with the following command: `reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path`. 
 
 That's it for the boring stuff. :sleeping: Now let's talk about some __Windows internals__ and lesser known __exploitation techniques__. :smiley:
 
@@ -40,7 +40,7 @@ First things first. Let's talk about __tokens__. There are 2 types of tokens: `P
 - __Primary__ token: one per process.  
 - __Impersonation__ token: one per thread which impersonates another user.  
 
-> __Note:__ an `Impersonation` token can be converted to a `Primary` token with a call to `DuplicateTokenEx()`. 
+__Note:__ an `Impersonation` token can be converted to a `Primary` token with a call to `DuplicateTokenEx()`. 
 
 ### Impersonation Levels 
 

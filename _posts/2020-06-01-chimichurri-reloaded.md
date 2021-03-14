@@ -20,7 +20,7 @@ Let's take the Service Tracing key corresponding to the RASMAN service as an exa
 
 In this example, `\\localhost\pipe\tracing` is set as the target directory. Then, as soon as `EnableFileTracing` is set to `1`, the service will try to open its log file using the path `\\localhost\pipe\tracing\RASMAN.LOG`. So, if we create a named pipe with the name `\\.\pipe\tracing\RASMAN.LOG`, we will receive a connection and we can impersonate the service account by calling the `ImpersonateNamedPipeClient` function. Since `RASMAN` is running as `NT AUTHORITY\SYSTEM`, we eventually get a SYSTEM impersonation token. 
 
-> __Note:__ depending on the version of Windows, the log file open event sometimes doesn't occur immediately when `EnableFileTracing` is set to `1`. One way to trigger it reliably is to start the service. Note that the RASMAN service can be started by low-privileged users via the Service Control Manager (SCM).
+__Note:__ depending on the version of Windows, the log file open event sometimes doesn't occur immediately when `EnableFileTracing` is set to `1`. One way to trigger it reliably is to start the service. Note that the RASMAN service can be started by low-privileged users via the Service Control Manager (SCM).
 
 <p align="center">
   <img src="/assets/posts/2020-06-01-chimichurri-reloaded/02_named-pipe.png">
@@ -30,7 +30,7 @@ Of course, if you try to do this on a version of Windows that is less than 10 ye
 
 I detailed this security update in my previous post. To put it simple, the flags `SECURITY_SQOS_PRESENT | SECURITY_IDENTIFICATION` are now specified in the `CreateFile` function call, which is responsible for getting the initial handle on the target log file. Because of these flags, the resulting impersonation level of the token we get is now `SecurityIdentification` (level 2/4). Though, `SecurityImpersonation` (level 3/4) or `SecurityDelegation` (level 4/4) is required in order to fully impersonate the user.
 
-> __Note:__ as a side note, you probably noticed that the message `Unknown error 0x80070542` is printed on the command prompt instead of the actual Win32 error message. The reason for this is that I try to get the error message correspondnig to the error code while impersonating the user. Because of the limited impersonation level, this code/message lookup fails. 
+__Note:__ as a side note, you probably noticed that the message `Unknown error 0x80070542` is printed on the command prompt instead of the actual Win32 error message. The reason for this is that I try to get the error message correspondnig to the error code while impersonating the user. Because of the limited impersonation level, this code/message lookup fails. 
 
 Does it mean we are screwed? Short answer, yes, we are because the token we get is kinda useless. Long answer, well, you'll have to read the next parts... :wink:
 

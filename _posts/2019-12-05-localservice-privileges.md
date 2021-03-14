@@ -38,7 +38,7 @@ In this case, we can see that the privileges of the `NT AUTHORITY\LOCAL SERVICE`
   <img src="/assets/posts/2019-12-05-localservice-privileges/04_bthserv-token.png">
 </p>
 
-> __Note:__ as a reminder, it might be a bit confusing but the `Enabled`/`Disabled` status of a privilege doesn't matter. What matters is that it is present within the token. If so, you can enable/disable them at runtime whenever you want. 
+__Note:__ as a reminder, it might be a bit confusing but the `Enabled`/`Disabled` status of a privilege doesn't matter. What matters is that it is present within the token. If so, you can enable/disable them at runtime whenever you want. 
 
 All that being said, in the case of a service such as the UPNP Device Host Service, is there a way to get all these privileges back? The answer is "yes" (otherwise there would be no point in writing this article :grin:). What is more surprising though is that it is quite simple to achieve. 
 
@@ -156,7 +156,7 @@ New-ScheduledTaskPrincipal
 
 Here is the `RequiredPrivilege` option that was mentioned in the Task Security Hardening article. This parameter ___specifies an array of user rights that Task Scheduler uses to run the tasks that are associated with the principal___.
 
-> __Note:__ you can find a complete list of Privilege constants [here](https://docs.microsoft.com/en-us/windows/win32/secauthz/privilege-constants).
+__Note:__ you can find a complete list of Privilege constants [here](https://docs.microsoft.com/en-us/windows/win32/secauthz/privilege-constants).
 
 We have all the information we need. Let's do this!
 

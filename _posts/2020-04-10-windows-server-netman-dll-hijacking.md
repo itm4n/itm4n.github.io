@@ -228,7 +228,7 @@ With this discovery, I also learned a lesson. Focusing your attention and your r
 
 Last but not least, I integrated this in my __Windows Privilege Escalation Check__ script - [PrivescCheck](https://github.com/itm4n/PrivescCheck). Depending on the version of Windows, the `Invoke-HijackableDllsCheck` function will tell you which DLL may potentially be hijacked through the `%PATH%` directories. Thanks [@1mm0rt41](https://twitter.com/1mm0rt411) for suggesting the idea! :thumbsup:
 
-## Links and Resources
+## Links & Resources
 
 - Microsoft Security Response Center (MSRC) - Triaging a DLL planting vulnerability  
 [https://msrc-blog.microsoft.com/2018/04/04/triaging-a-dll-planting-vulnerability/](https://msrc-blog.microsoft.com/2018/04/04/triaging-a-dll-planting-vulnerability/)

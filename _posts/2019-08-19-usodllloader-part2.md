@@ -18,7 +18,7 @@ Before opening `usoclient.exe` in IDA, I downloaded the corresponding PDB file w
 symchk /s "srv*c:\symbols*https://msdl.microsoft.com/download/symbols" "c:\windows\system32\usoclient.exe"
 ```
 
-> __Note:__ _PDB stands for "Program Database". Program database (PDB) is a proprietary file format (developed by Microsoft) for storing debugging information about a program (or, commonly, program modules such as a DLL or EXE)._ Source: [Wikipedia](https://en.wikipedia.org/wiki/Program_database)
+__Note:__ _PDB stands for "Program Database". Program database (PDB) is a proprietary file format (developed by Microsoft) for storing debugging information about a program (or, commonly, program modules such as a DLL or EXE)._ Source: [Wikipedia](https://en.wikipedia.org/wiki/Program_database)
 
 `usoclient.exe` is now opened in IDA and the symbols are loaded, where do we go from here? Well, here the starting point is quite obvious. We know that the `StartScan` option is a valid "trigger" so, we will naturally look for occurrences of this string in the binary and enumerate all the `Xrefs` to find out where it's used. 
 

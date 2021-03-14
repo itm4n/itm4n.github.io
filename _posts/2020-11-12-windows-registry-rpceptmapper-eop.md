@@ -115,7 +115,7 @@ According to this short paragraph, one can theoretically register a DLL in a dri
   <img src="/assets/posts/2020-11-12-windows-registry-rpceptmapper-eop/07_sc-qc-rpceptmapper.png">
 </p>
 
-> __Note:__ in Windows, each service has a given `Type`. A service type can be one of the following values: `SERVICE_KERNEL_DRIVER (1)`, `SERVICE_FILE_SYSTEM_DRIVER (2)`, `SERVICE_ADAPTER (4)`, `SERVICE_RECOGNIZER_DRIVER (8)`, `SERVICE_WIN32_OWN_PROCESS (16)`, `SERVICE_WIN32_SHARE_PROCESS (32)` or `SERVICE_INTERACTIVE_PROCESS (256)`. 
+__Note:__ in Windows, each service has a given `Type`. A service type can be one of the following values: `SERVICE_KERNEL_DRIVER (1)`, `SERVICE_FILE_SYSTEM_DRIVER (2)`, `SERVICE_ADAPTER (4)`, `SERVICE_RECOGNIZER_DRIVER (8)`, `SERVICE_WIN32_OWN_PROCESS (16)`, `SERVICE_WIN32_SHARE_PROCESS (32)` or `SERVICE_INTERACTIVE_PROCESS (256)`. 
 
 After some googling, I found this resource in the documentation: [Creating the Application's Performance Key](https://docs.microsoft.com/en-us/windows/win32/perfctrs/creating-the-applications-performance-key).
 
@@ -381,7 +381,7 @@ And, I saw that my log file was created almost right away! Here is the content o
 
 I expected to get arbitary code execution as `NETWORK SERVICE` in the context of the `RpcEptMapper` service at most but, it looks like I got a much better result than anticipated. I actually got arbitrary code execution in the context of the `WMI` service itself, which runs as `LOCAL SYSTEM`. How amazing is that?! :sunglasses:
 
-> __Note:__ if I had got arbirary code execution as `NETWORK SERVICE`, I would have been just a token away from the `LOCAL SYSTEM` account thanks to the trick that was demonstrated by James Forshaw a few months ago in this blog post: [Sharing a Logon Session a Little Too Much](https://www.tiraniddo.dev/2020/04/sharing-logon-session-little-too-much.html).
+__Note:__ if I had got arbirary code execution as `NETWORK SERVICE`, I would have been just a token away from the `LOCAL SYSTEM` account thanks to the trick that was demonstrated by James Forshaw a few months ago in this blog post: [Sharing a Logon Session a Little Too Much](https://www.tiraniddo.dev/2020/04/sharing-logon-session-little-too-much.html).
 
 I also tried to get each WMI class separately and I observed the exact same result.
 

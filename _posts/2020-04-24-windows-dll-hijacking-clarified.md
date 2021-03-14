@@ -17,7 +17,7 @@ Dynamically compiled Win32 executables use functions which are exported by built
 - __At link time__ - When the program is compiled, an __import table__ is written into the headers of the Portable Executable (PE). To put it simple, it keeps track of which function needs to be imported from which DLL. Therefore, whenever the program is executed, the linker knows what to do and loads all the required libraries transparently on your behalf. 
 - __At runtime__ - Sometimes, you need to or want to import a library at runtime. At this point, the linker has already done its part of the job, so if you want to do so you'll have to take care of a few things yourself. In particular, you can call `LoadLibrary()` or `LoadLibraryEx()` from the Windows API.
 
-> __Note:__ in this post, I'll consider __only Win32 applications__. Although they use the same extension, DLLs in the context of .NET applications have a completely different meaning so I won't talk about them here. I don't want to add to the confusion. 
+__Note:__ in this post, I'll consider __only Win32 applications__. Although they use the same extension, DLLs in the context of .NET applications have a completely different meaning so I won't talk about them here. I don't want to add to the confusion. 
 
 According to the documentation, the prototype of these two functions is as follows:
 
@@ -36,7 +36,7 @@ But then, if you don't specify the full path of the library you want to load, ho
 
 The locations in the "pre-search" are highlighted in green because they are safe (from a privilege escalation perspective). If the name of the DLL doesn't correspond to a DLL which is already loaded in memory or if it's not a __known DLL__, the actual search begins. The program will first try to load it from the application's directory. If it succeeds, the search stops there otherwise it continues with the `C:\Windows\System32` folder and so on...
 
-> __Note:__ in this context, the term "___Known DLL___" has a very specific meaning. These DLLs are listed in the `HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\KnownDLLs` registry key and are guaranteed to be loaded from the System folder.
+__Note:__ in this context, the term "___Known DLL___" has a very specific meaning. These DLLs are listed in the `HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\KnownDLLs` registry key and are guaranteed to be loaded from the System folder.
 
 I won't bore you with the theory. Rather, I'll illustrate this search order with some examples based on the following source code. The following program uses the first command line argument as the name of a library to load with `LoadLibrary()`.
 
@@ -68,7 +68,7 @@ The program first tries to load the DLL from `C:\MyCustomApp`, the application's
 
 We can see a potential issue here. What if the `C:\MyCustomApp` directory is configured with incorrect permissions and allows any user to add files? You guessed it, a malicious version of the DLL could be _planted_ in this directory, allowing a local attacker to execute arbitrary code in the context of any other user who would run this application. Although that's DLL search order hijacking, this first variant is also sometimes rightly or wrongly called __DLL Sideloading__. It's mostly used by malwares but it can also be used for privilege escalation (see my article about [DLL Proxying](/dll-proxying/)).
 
-> __Note:__ in theory DLL Sideloading has a specific meaning. According to MITRE: "_Side-loading vulnerabilities specifically occur when Windows Side-by-Side (WinSxS) manifests are not explicit enough about characteristics of the DLL to be loaded. Adversaries may take advantage of a legitimate program that is vulnerable to side-loading to load a malicious DLL._" 
+__Note:__ in theory DLL Sideloading has a specific meaning. According to MITRE: "_Side-loading vulnerabilities specifically occur when Windows Side-by-Side (WinSxS) manifests are not explicit enough about characteristics of the DLL to be loaded. Adversaries may take advantage of a legitimate program that is vulnerable to side-loading to load a malicious DLL._" 
 
 __Scenario 3:__ loading a nonexistent DLL
 
@@ -170,11 +170,11 @@ On Windows 10 (workstation), services that match these criteria have almost disa
 
 As you can see on the above screenshot, the service tried to load this DLL from `C:\MyCustomApp` because this directory was added to the system's `%PATH%`. Since this directory is configured with weak permissions, any local user can therefore plant a malicious version of this DLL and thus execute code in the context of this service after a machine reboot. 
 
-> __Note:__ once again, the `%PATH%` is an environment variable so it varies depending on the user profile. As a consequence, the `%PATH%` of the `NT AUTHORITY\SYSTEM` account is often different from the `%PATH%` of a typical user account.
+__Note:__ once again, the `%PATH%` is an environment variable so it varies depending on the user profile. As a consequence, the `%PATH%` of the `NT AUTHORITY\SYSTEM` account is often different from the `%PATH%` of a typical user account.
 
 Though, you have to be very careful with this particular DLL hijacking if you want to exploit it during a pentest. Indeed, when this DLL is loaded by the service, it's not freed so you won't be able to remove the file. One solution is to stop the service as soon as you get your SYSTEM shell, then remove the file and finally start the service again.
 
-> __Note:__ starting/stopping the Task Scheduler service requires SYSTEM privileges.
+__Note:__ starting/stopping the Task Scheduler service requires SYSTEM privileges.
 
 This example applies to Windows 10 workstation but what about Windows servers? Well I won't discuss this here because I already did that in my previous post: [Windows Server 2008R2-2019 NetMan DLL Hijacking](/windows-server-netman-dll-hijacking/). On all versions of Windows Server, starting with 2008 R2, the NetMan service is prone to DLL hijacking in the `%PATH%` directories because of the missing WLAN API. So, if you find yourself in the situation I just described, you could trigger this service in order to load your malicious DLL as SYSTEM, very convenient.
 
