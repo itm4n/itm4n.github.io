@@ -36,7 +36,7 @@ That's it! You are done!
 Before applying this setting throughout an entire corporate environment, there are two particular cases to consider though. They are both described in the [official documentation](https://docs.microsoft.com/en-us/windows-server/security/credentials-protection-and-management/configuring-additional-lsa-protection). If the answer to at least one of the two following questions is "_yes_" then you need to take some precautions.
 
 - Do you use any __third-party authentication module__?
-- Do you use UEFI and/or is ___Secure Boot___?
+- Do you use __UEFI__ and/or ___Secure Boot___?
 
 __Third-party authentication module --__ If a third-party authentication module is required, such as in the case of a Smart Card Reader for example, you should make sure that they meet the requirements that are listed here: [_Protected process requirements for plug-ins or drivers_](https://docs.microsoft.com/en-us/windows-server/security/credentials-protection-and-management/configuring-additional-lsa-protection#protected-process-requirements-for-plug-ins-or-drivers). Basically, the module must be _digitally signed with a Microsoft signature_ and it must comply with the _Microsoft Security Development Lifecycle (SDL)_. The documentation also contains some instructions on how to set up an _Audit Policy_ prior to the rollout phase to determine whether such module would be blocked if `RunAsPPL` were enabled.
 
