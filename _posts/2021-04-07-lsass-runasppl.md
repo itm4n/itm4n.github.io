@@ -266,6 +266,8 @@ There is one aspect of PP/PPL that I did not mention though. The "L" in "PPL" is
 
 Lastly, I would like to mention that this Research & Development work was partly done in the context of my job at [SCRT](https://www.scrt.ch). So, the next part will be published on their [blog](https://blog.scrt.ch/), but I'll keep you posted on Twitter. The best is yet to come, so stay tuned!
 
+__Update 2021-04-25__ -- The second part is now available here: [Bypassing LSA Protection in Userland](https://blog.scrt.ch/2021/04/22/bypassing-lsa-protection-in-userland/)
+
 ## Links & Resources
 
 - Microsoft - How to configure additional LSA protection of credentials  
