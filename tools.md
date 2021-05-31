@@ -587,24 +587,31 @@ layout: "post"
             // dirb has no particular requirements
             // result += "# https://gitlab.com/kalilinux/packages/dirb\n";
             result += "dirb";
+            result += " '" + url + "'";
             result += extensions.length == 0 ? "" : " -X '" + wfHelperPrepareExtensionList(extensions, '.', ',') + ",,'";
             result += logpath.length == 0 ? "" : " -o '" + logpath + "'";
-            result += " '" + url + "'";
             result += wordlist.length == 0 ? "" : " '" + wordlist + "'";
             toReturn = true;
 
         } else if (tool == "dirsearch") {
 
             // dirsearch requires an extension list
-            if (extensions.length != 0) {
-                // result = "# https://github.com/maurosoria/dirsearch\n";
-                result += "dirsearch.py -e";
-                result += " '" + extensions.join(',') + "' -f";
-                result += wordlist.length == 0 ? "" : " -w '" + wordlist + "'";
-                result += logpath == "" ? "" : " --plain-text-report '" + logpath + "'";
-                result += " -u '" + url + "'";
-                toReturn = true;
-            }
+            // if (extensions.length != 0) {
+            //     // result = "# https://github.com/maurosoria/dirsearch\n";
+            //     result += "dirsearch.py -e";
+            //     result += " '" + extensions.join(',') + "' -f";
+            //     result += wordlist.length == 0 ? "" : " -w '" + wordlist + "'";
+            //     result += logpath == "" ? "" : " --plain-text-report '" + logpath + "'";
+            //     result += " -u '" + url + "'";
+            //     toReturn = true;
+            // }
+
+            result += "dirsearch.py";
+            result += extensions.length == 0 ? "" : " -e '" + extensions.join(',') + "'";
+            result += wordlist.length == 0 ? "" : " -w '" + wordlist + "'";
+            result += logpath == "" ? "" : " -o '" + logpath + "' --format plain";
+            result += " -u '" + url + "'";
+            toReturn = true;
 
         } else if (tool == "wfuzz") {
 
