@@ -473,7 +473,7 @@ The value `0x2008` is a combination of the flags `LOAD_LIBRARY_SAFE_CURRENT_DIRS
 ![Description of the flag `LOAD_LIBRARY_SAFE_CURRENT_DIRS`](/assets/posts/2023-03-17-bypassing-ppl-in-userland-again/15_doc-safe-current-dirs.png)
 _Description of the flag `LOAD_LIBRARY_SAFE_CURRENT_DIRS`_
 
-As for the flag `LOAD_WITH_ALTERED_SEARCH_PATH`, it is a different story. The documentation states that, if this flag is used and the input path is relative, the behavior of `LoadLibraryEx`
+As for the flag `LOAD_WITH_ALTERED_SEARCH_PATH`, it is a different story. The documentation states that, if this flag is used and the input path is relative, the behavior of `LoadLibraryEx` is _undefined_...
 
 ![Description of the flag `LOAD_WITH_ALTERED_SEARCH_PATH`](/assets/posts/2023-03-17-bypassing-ppl-in-userland-again/16_doc-altered-search-path.png)
 _Description of the flag `LOAD_WITH_ALTERED_SEARCH_PATH`_
