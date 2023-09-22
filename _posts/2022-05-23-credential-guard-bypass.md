@@ -384,4 +384,4 @@ Lastly, this was a cool little challenge, not too difficult, and as always I lea
 - Winbindex - The Windows Binaries Index  
 [https://winbindex.m417z.com/](https://winbindex.m417z.com/)
 - Nynaeve - Most data references in x64 are RIP-relative  
-[http://www.nynaeve.net/?p=192](http://www.nynaeve.net/?p=192)
+`http://www.nynaeve.net/?p=192`

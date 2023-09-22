@@ -148,7 +148,7 @@ But then, what are the criteria for finding the perfect candidate? They can be s
 - It doesn't use a _safe DLL search order_.
 - It runs as `NT AUTHORITY\SYSTEM`. Actually it's not strictly required but I will consider only this case for simplicity. This particular subject will be discussed in an upcoming article. :wink:
 
-On Windows 10 (workstation), services that match these criteria have almost disappeared. Therefore, I often say that DLL hijacking isn't that common nowadays on Windows 10. That's because when I think of it I refer to missing DLLs which are loaded from the `%PATH%` directories by services running as highly privileged account, which is only one variant of DLL hijacking. Nevertheless there are still a few of these services. One of them is the __Task Scheduler__, as explained in this [blog post](http://remoteawesomethoughts.blogspot.com/2019/05/windows-10-task-schedulerservice.html). This service tries to load the missing `WptsExtensions.dll` DLL upon startup. 
+On Windows 10 (workstation), services that match these criteria have almost disappeared. Therefore, I often say that DLL hijacking isn't that common nowadays on Windows 10. That's because when I think of it I refer to missing DLLs which are loaded from the `%PATH%` directories by services running as highly privileged account, which is only one variant of DLL hijacking. Nevertheless there are still a few of these services. One of them is the __Task Scheduler__, as explained in this [blog post](https://remoteawesomethoughts.blogspot.com/2019/05/windows-10-task-schedulerservice.html). This service tries to load the missing `WptsExtensions.dll` DLL upon startup. 
 
 ![](/assets/posts/2020-04-24-windows-dll-hijacking-clarified/09_scheduler-dll-hijacking.png)
 
@@ -251,4 +251,4 @@ In my opinion, a honest and constructive reply to people who report these issues
 [https://googleprojectzero.blogspot.com/2018/04/windows-exploitation-tricks-exploiting.html](https://googleprojectzero.blogspot.com/2018/04/windows-exploitation-tricks-exploiting.html)
 
 - Windows 10 - Task Scheduler service - Privilege Escalation/Persistence through DLL planting  
-[http://remoteawesomethoughts.blogspot.com/2019/05/windows-10-task-schedulerservice.html](http://remoteawesomethoughts.blogspot.com/2019/05/windows-10-task-schedulerservice.html)
+[https://remoteawesomethoughts.blogspot.com/2019/05/windows-10-task-schedulerservice.html](https://remoteawesomethoughts.blogspot.com/2019/05/windows-10-task-schedulerservice.html)

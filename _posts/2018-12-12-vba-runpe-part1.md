@@ -39,7 +39,7 @@ As we can see on his screenshot, the title of the command prompt window is actua
 
 Didier Stevens actually implemented a variant of the _RunPE_ technique in VBA. RunPE is a trick that has been used by malware authors for many years. It consists in running code inside the memory of a legit process in order to hide its actual ativity. 
 
-I won't digress too much and explain what _RunPE_ is in detail. Instead, I will try to explain how his code works. You can follow along by downloading it [here](http://didierstevens.com/files/software/cmd-dll_v0_0_4.zip).
+I won't digress too much and explain what _RunPE_ is in detail. Instead, I will try to explain how his code works. You can follow along by downloading it [here](https://didierstevens.com/files/software/cmd-dll_v0_0_4.zip).
 
 ### 1) Importing WIN32 functions 
 

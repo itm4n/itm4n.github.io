@@ -74,7 +74,7 @@ Here I picked `dbghelp.dll` but any other would do as well. We can find its loca
 
 ### 2) List the exported functions 
 
-We'll use [DLL Export Viewer](http://www.nirsoft.net/utils/dll_export_viewer.html) to list all the functions that are exported by the DLL. Once you've opened the target DLL file (`C:\Windows\System32\dbghelp.dll` in our case), go to `View > HTML Report - All Functions`. 
+We'll use [DLL Export Viewer](https://www.nirsoft.net/utils/dll_export_viewer.html) to list all the functions that are exported by the DLL. Once you've opened the target DLL file (`C:\Windows\System32\dbghelp.dll` in our case), go to `View > HTML Report - All Functions`. 
 
 ![](/assets/posts/2019-04-18-dll-proxying/dp05_dll-export-viewer.png)
 
