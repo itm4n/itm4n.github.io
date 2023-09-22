@@ -52,7 +52,7 @@ The main steps are as follows:
 You'll need the following:
 - [Process Monitor](https://docs.microsoft.com/en-us/sysinternals/downloads/procmon) from the Sysinternals suite
 - [Visual studio](https://visualstudio.microsoft.com/fr/)
-- [DLL Export Viewer](http://www.nirsoft.net/utils/dll_export_viewer.html) 
+- [DLL Export Viewer](https://www.nirsoft.net/utils/dll_export_viewer.html) 
 - A copy of the original DLL
 
 ### 1) Choose a DLL to proxy 

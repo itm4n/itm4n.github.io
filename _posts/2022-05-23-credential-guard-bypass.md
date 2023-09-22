@@ -286,7 +286,7 @@ mov    eax, dword ptr [rip + 0x343c3]   ; 8B 05   C3 43 03 00
 
 And here is the thing I intentionally glossed over in the first part. Since I am not used to reading assembly code, these two lines initially puzzled me. I was expecting to find the addresses of the two variables directly in the code, but instead, I found only RIP-relative offsets.
 
-I learned that the `x86_64` architecture indeed uses RIP-relative addressing to reference data. As explained in this [post](http://www.nynaeve.net/?p=192), the main advantage of using this kind of addressing is that it produces Position Independent Code (PIC).
+I learned that the `x86_64` architecture indeed uses RIP-relative addressing to reference data. As explained in this [post](https://www.nynaeve.net/?p=192), the main advantage of using this kind of addressing is that it produces Position Independent Code (PIC).
 
 The RIP-relative address of `g_fParameter_UseLogonCredential` is `rip+0x34975`. We found the code at the address `0x00001839`, so the _absolute_ offset of `g_fParameter_UseLogonCredential` should be `0x00001839 + 0x34975 = 0x361ae`, right?
 
@@ -384,4 +384,4 @@ Lastly, this was a cool little challenge, not too difficult, and as always I lea
 - Winbindex - The Windows Binaries Index  
 [https://winbindex.m417z.com/](https://winbindex.m417z.com/)
 - Nynaeve - Most data references in x64 are RIP-relative  
-`http://www.nynaeve.net/?p=192`
+[https://www.nynaeve.net/?p=192`](https://www.nynaeve.net/?p=192)
