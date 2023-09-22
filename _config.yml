@@ -13,7 +13,7 @@ baseurl: ''
 lang: en
 
 
-# Change to your timezone › http://www.timezoneconverter.com/cgi-bin/findzone/findzone
+# Change to your timezone › https://kevinnovak.github.io/Time-Zone-Picker
 timezone: Europe/Paris
 
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
@@ -181,12 +181,12 @@ compress_html:
 exclude:
   - '*.gem'
   - '*.gemspec'
+  - docs
   - tools
   - README.md
   - CHANGELOG.md
   - LICENSE
   - gulpfile.js
-  - node_modules
   - package*.json
 
 jekyll-archives:
