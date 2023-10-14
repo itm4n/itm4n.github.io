@@ -450,3 +450,5 @@ Lastly, in her talk entitled [Deep Attack Surfaces, Shallow Bugs](https://www.ss
 [https://trustedcomputinggroup.org/wp-content/uploads/TCG_TPM2_r1p59_Part3_Commands_pub.pdf](https://trustedcomputinggroup.org/wp-content/uploads/TCG_TPM2_r1p59_Part3_Commands_pub.pdf)
 - TCG - Trusted Platform Module Library Part 2: Structures  
 [https://trustedcomputinggroup.org/wp-content/uploads/TPM-Rev-2.0-Part-2-Structures-01.38.pdf](https://trustedcomputinggroup.org/wp-content/uploads/TPM-Rev-2.0-Part-2-Structures-01.38.pdf)
+
+___This article was originally posted on SCRT's blog [here](https://blog.scrt.ch/2023/09/15/a-deep-dive-into-tpm-based-bitlocker-drive-encryption/).___
