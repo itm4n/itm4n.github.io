@@ -122,14 +122,14 @@ Here is what happens right before the call:
 
 The value of `RCX` is `0x000002344FA53D68`. Let's see what we can find at this address with WinDbg.
 
-```txt
+```plaintext
 0:000> dqs 0x00002344FA53D68 L1
 00000234`4fa53d68  00007ff8`e48fd560 usoapi!IUpdateSessionOrchestratorProxyVtbl+0x10
 ```
 
 We find the start address of the Proxy VTable of the UpdateSessionOrchestrator's interface. We can then enumerate all the pointers listed in the VTable. 
 
-```txt
+```plaintext
 0:000> dqs 0x00007ff8e48fd560 LB
 00007ff8`e48fd560  00007ff8`e48f8040 usoapi!IUnknown_QueryInterface_Proxy
 00007ff8`e48fd568  00007ff8`e48f7d90 usoapi!IUnknown_AddRef_Proxy
@@ -148,7 +148,7 @@ The first three functions are `QueryInterface`, `AddRef` and `Release`. These ar
 
 In order to find more information about the VTable, we have to inspect the server. We know the name of the COM object - `UpdateSessionOrchestrator` - and we know the name of the service - `USOsvc`. So, theoritically, we should find all the information we need in `usosvc.dll`.
 
-```txt
+```plaintext
 .rdata:00000001800582F8 dq offset UpdateSessionOrchestrator::QueryInterface(void)
 .rdata:0000000180058300 dq offset UpdateSessionOrchestrator::AddRef(void)
 .rdata:0000000180058308 dq offset UpdateSessionOrchestrator::Release(void)
@@ -168,7 +168,7 @@ Finally, the value of RDX is `0x000002344FA39450`. Let's check what we can find 
 It's just a pointer to the null terminated unicode string `L"StartScan"`. 
 
 All this information can be summarized as follows.
-```txt
+```plaintext
 RAX = VTable[5] = `UpdateSessionOrchestrator::LogTaskRunning(ushort const *)`
 RCX = argv[0]   = `UpdateSessionOrchestrator pInterface`
 RDX = argv[1]   = L"StartScan"
@@ -181,12 +181,10 @@ pInterface->LogTaskRunning(L"StartScan");
 
 The same process can be applied to the next call.
 
-<p align="center">
-  <img src="/assets/posts/2019-08-19-usodllloader-part2/32_IDA-break-2.png">
-</p>
+![](/assets/posts/2019-08-19-usodllloader-part2/32_IDA-break-2.png)
 
 This would yield the following:
-```txt
+```plaintext
 RAX = VTable[0] = `UpdateSessionOrchestrator::QueryInterface()`
 RCX = argv[0]   = `UpdateSessionOrchestrator pInterface`
 RDX = argv[1]   = `*GUID(c57692f8-8f5f-47cb-9381-34329b40285a)`
@@ -195,7 +193,7 @@ R8  = argv[2]   = Output pointer location
 
 Here, the returned value is `NULL` so, all the code after the `if` statement would be ignored. 
 
-![](/assets/posts/2019-08-19-usodllloader-part2/32_IDA-break-2.png)
+![](/assets/posts/2019-08-19-usodllloader-part2/33_IDA-break-2-check.png)
 
 Therefore, we can skip it and jump right here:
 
@@ -204,7 +202,7 @@ Therefore, we can skip it and jump right here:
 Nice! :sunglasses: Were are getting closer to the target `PerformOperationOnSession()` call. 
 
 With the same reverse engineering process, we find the following.
-```txt
+```plaintext
 RAX = VTable[3] = `UpdateSessionOrchestrator::CreateUpdateSession(tagUpdateSessionType,_GUID const &,void * *)`
 RCX = argv[0]   = `UpdateSessionOrchestrator pInterface`
 RDX = argv[1]   = 1
@@ -232,7 +230,7 @@ Now, we can enter the `PerformOperationOnSession()` function and, we are back to
 ![](/assets/posts/2019-08-19-usodllloader-part2/37_IDA-break-4-instructions.png)
 
 With this final breakpoint, the function's offset and the parameters can be easily determined.
-```txt
+```plaintext
 RAX = VTable[21] = combase_NdrProxyForwardingFunction21
 RCX = argv[0]    = IUsoSessionCommon pProxy
 RDX = argv[1]    = 0
