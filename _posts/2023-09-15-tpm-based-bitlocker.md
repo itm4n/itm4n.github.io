@@ -354,7 +354,7 @@ For instance, the screenshot above shows that a `TPM2_PCR_Read` command was sent
 
 Armed with this new tool, I proceeded to inspect the TPM commands used by BitLocker when it creates and seals the VMK. The diagram below summarizes my observations.
 
-![Diagram describing the interaction between BitLocker and the TPM](/assets/posts/2023-09-15-tpm-based-bitlocker/27_bitlocker-activation-tpm-create.svg)
+![Diagram describing the interaction between BitLocker and the TPM](/assets/posts/2023-09-15-tpm-based-bitlocker/27_bitlocker-activation-tpm-create.png)
 _Diagram describing the interaction between BitLocker and the TPM_
 
 BitLocker first queries the value of PCR 7 in the SHA-256 bank (1). Then, it starts a new "trial" authorization session (2) and specifies that no password is required (3). And here is the crucial step of the process, it tells the TPM that authorization must be performed using the validation profile PCR 7+11 (4), and it gives it the expected PCR digest. In an actual authorization session, this command would have failed because this PCR digest is not correct in the current state of the selected PCRs, but since this a trial session, the TPM accepts the command and simply updates its internal policy digest accordingly.
