@@ -178,7 +178,7 @@ Of course, there was a trick! The name of the challenge was supposed to hint tow
 ![Google search with the keywords "windows rpc cache"](/assets/posts/2024-01-21-insomnihack-2024-cache-cache/05_akamai-blog-post-search-result.png)
 _Google search with the keywords "windows rpc cache"_
 
-In the blog post [Cold Hard Cache - Bypassing RPC Interface Security with Cache Abuse](https://www.akamai.com/blog/security-research/cold-hard-cache-bypassing-rpc-with-cache-abuse), Ben Barnea and Stiv Kupchik discussed a very interesting topic I wasn't aware of before this publication. Essentially, they explain that the result of a security callback can be cached, either per interface, or per call, which can lead to trick logic bugs if not handled correctly by the developers.
+In the blog post [Cold Hard Cache - Bypassing RPC Interface Security with Cache Abuse](https://www.akamai.com/blog/security-research/cold-hard-cache-bypassing-rpc-with-cache-abuse), Ben Barnea and Stiv Kupchik discussed a very interesting topic I wasn't aware of before this publication. Essentially, they explain that the result of a security callback can be cached, either per interface, or per call, which can lead to tricky logic bugs if not handled correctly by the developers.
 
 Let's say we have an RPC server with one interface and two procedures A and B. This server wants to grant access to low-privileged users to procedure A, but not B, using a security callback. If a client connects to the server and invokes A, the request is served. However, if the same client connects and invokes B, the access is denied.
 
