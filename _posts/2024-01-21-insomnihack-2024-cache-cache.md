@@ -3,6 +3,7 @@ title: "Insomni'hack 2024 CTF Teaser - Cache Cache"
 layout: "post"
 categories: ["Windows"]
 tags: ["Exploit", "CTF"]
+image: /assets/posts/2024-01-21-insomnihack-2024-cache-cache/og.jpg
 ---
 
 Last year, for the [Insomni'hack 2023 CTF Teaser](https://insomnihack.ch/ctf-teaser-2023/), I created a challenge based on a logic bug in a Windows RPC server. I was pleased with the result, so I renewed the experience. Besides, I already knew what type of bug to tackle for this new edition. :smiling_imp:
@@ -262,3 +263,5 @@ A last word about the challenge's name. First, the word "Cache" was intended to 
 [https://itm4n.github.io/insomnihack-2023-insobug/](https://itm4n.github.io/insomnihack-2023-insobug/)
 - Cold Hard Cache - Bypassing RPC Interface Security with Cache Abuse  
 [https://www.akamai.com/blog/security-research/cold-hard-cache-bypassing-rpc-with-cache-abuse](https://www.akamai.com/blog/security-research/cold-hard-cache-bypassing-rpc-with-cache-abuse)
+
+_Front image by [vecstock](https://de.freepik.com/fotos-kostenlos/futuristische-maschinen-in-alten-fabriken-die-von-ki-erzeugte-geraete-reparieren_41483308.htm) on Freepik_

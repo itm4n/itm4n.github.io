@@ -3,6 +3,7 @@ title: "Debugging Protected Processes"
 layout: "post"
 categories: "Windows"
 tags: ["Research"]
+image: /assets/posts/2022-12-04-debugging-protected-processes/og.jpg
 ---
 
 Whenever I need to debug a protected process, I usually disable the protection in the Kernel so that I can attach a User-mode debugger. This has always served me well until it sort of backfired.
@@ -329,3 +330,5 @@ However, I don't think there is a blog post that documents the underlying concep
 [https://www.alex-ionescu.com/?p=146](https://www.alex-ionescu.com/?p=146)
 - Debugging the undebuggable and finding a CVE in Microsoft Defender for Endpoint  
 [https://medium.com/falconforce/debugging-the-undebuggable-and-finding-a-cve-in-microsoft-defender-for-endpoint-ce36f50bb31](https://medium.com/falconforce/debugging-the-undebuggable-and-finding-a-cve-in-microsoft-defender-for-endpoint-ce36f50bb31)
+
+_Front image by [freepik](https://www.freepik.com/free-ai-image/futuristic-view-high-tech-earth-planet_133757158.htm) on Freepik_

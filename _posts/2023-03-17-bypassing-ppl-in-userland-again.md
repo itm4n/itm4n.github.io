@@ -3,6 +3,7 @@ title: "Bypassing PPL in Userland (again)"
 layout: "post"
 categories: ["Windows"]
 tags: ["Research", "Bypass", "Exploit"]
+image: /assets/posts/2023-03-17-bypassing-ppl-in-userland-again/og.jpg
 ---
 
 This post is a sequel to [Bypassing LSA Protection in Userland](https://blog.scrt.ch/2021/04/22/bypassing-lsa-protection-in-userland/) and [The End of PPLdump](https://itm4n.github.io/the-end-of-ppldump/). Here, I will discuss how I was able to bypass the latest mitigation implemented by Microsoft and develop a new Userland exploit for injecting arbitrary code in a PPL with the highest signer type.
@@ -516,5 +517,7 @@ Finally, what about mitigations and detection, you might ask? Regarding mitigati
 [https://github.com/RedCursorSecurityConsulting/PPLKiller](https://github.com/RedCursorSecurityConsulting/PPLKiller)
 - James Forshaw - CiSetFileCache TOCTOU Security Feature Bypass  
 [https://bugs.chromium.org/p/project-zero/issues/detail?id=1332](https://bugs.chromium.org/p/project-zero/issues/detail?id=1332)
+
+_Front image by [vecstock](https://www.freepik.com/free-ai-image/doctor-from-future-concept_111629075.htm) on Freepik_
 
 **_This article was originally posted on SCRT’s blog [here](https://blog.scrt.ch/2023/03/17/bypassing-ppl-in-userland-again/)._**

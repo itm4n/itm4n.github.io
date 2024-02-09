@@ -3,6 +3,7 @@ title: "The End of PPLdump"
 layout: "post"
 categories: "Windows"
 tags: ["Research", "Patch Analysis"]
+image: /assets/posts/2022-07-24-the-end-of-ppldump/og.jpg
 ---
 
 A few days ago, an [issue](https://github.com/itm4n/PPLdump/issues/12) was opened for [PPLdump](https://github.com/itm4n/PPLdump) on GitHub, stating that it no longer worked on Windows 10 21H2 Build 19044.1826. I was skeptical at first so I fired up a new VM and started investigating. Here is what I found...
@@ -292,3 +293,5 @@ In conclusion, this is truly _The End of PPLdump_. However, this tool leveraged 
 [https://itm4n.github.io/lsass-runasppl/](https://itm4n.github.io/lsass-runasppl/)
 - Bypassing LSA Protection in Userland  
 [https://blog.scrt.ch/2021/04/22/bypassing-lsa-protection-in-userland/](https://blog.scrt.ch/2021/04/22/bypassing-lsa-protection-in-userland/)
+
+_Front image by [vector_corp](https://www.freepik.com/free-ai-image/real-toxic-ewaste-world_93564420.htm) on Freepik_

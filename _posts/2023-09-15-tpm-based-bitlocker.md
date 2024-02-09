@@ -3,6 +3,7 @@ title: "A Deep Dive into TPM-based BitLocker Drive Encryption"
 layout: "post"
 categories: ["Windows"]
 tags: ["Research"]
+image: /assets/posts/2023-09-15-tpm-based-bitlocker/og.jpg
 ---
 
 When I investigated CVE-2022-41099, a BitLocker Drive Encryption bypass through the Windows Recovery Environment (WinRE), the fact that the latter was able to transparently access an encrypted drive without requiring the recovery password struck me. My initial thought was that there had to be a way to reproduce this behavior and obtain the master key from the Recovery Environment (WinRE). The outcome of a generic BitLocker bypass was too tempting not to explore this idea...
@@ -450,5 +451,7 @@ Lastly, in her talk entitled [Deep Attack Surfaces, Shallow Bugs](https://www.ss
 [https://trustedcomputinggroup.org/wp-content/uploads/TCG_TPM2_r1p59_Part3_Commands_pub.pdf](https://trustedcomputinggroup.org/wp-content/uploads/TCG_TPM2_r1p59_Part3_Commands_pub.pdf)
 - TCG - Trusted Platform Module Library Part 2: Structures  
 [https://trustedcomputinggroup.org/wp-content/uploads/TPM-Rev-2.0-Part-2-Structures-01.38.pdf](https://trustedcomputinggroup.org/wp-content/uploads/TPM-Rev-2.0-Part-2-Structures-01.38.pdf)
+
+_Front image by [vecstock](https://www.freepik.com/free-ai-image/glowing-computer-chip-complexity-electronics-industry-generated-by-ai_42586641.htm) on Freepik_
 
 ___This article was originally posted on SCRT's blog [here](https://blog.scrt.ch/2023/09/15/a-deep-dive-into-tpm-based-bitlocker-drive-encryption/).___
