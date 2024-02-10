@@ -3,6 +3,7 @@ title: "PrintSpoofer - Abusing Impersonation Privileges on Windows 10 and Server
 layout: "post"
 categories: "Windows"
 tags: ["Research", "Privilege Escalation", "Exploit"]
+image: /assets/posts/2020-05-02-printspoofer-abusing-impersonate-privileges/og.jpg
 ---
 
 Over the last few years, tools such as [RottenPotato](https://github.com/foxglovesec/RottenPotato), [RottenPotatoNG](https://github.com/breenmachine/RottenPotatoNG) or [Juicy Potato](https://github.com/ohpe/juicy-potato) have made the exploitation of impersonation privileges on Windows very popular among the offensive security community. Though, recent changes to the operating system have intentionally or unintentionally reduced the power of these techniques on Windows 10 and Server 2016/2019. Today, I want to introduce a new tool that will allow pentesters to easily leverage these privileges again. 
@@ -300,3 +301,5 @@ Last but not least, I want to say a special thank you to [@jonaslyk](https://twi
 
 - Tyranid's Lair - Sharing a Logon Session a Little Too Much  
 [https://www.tiraniddo.dev/2020/04/sharing-logon-session-little-too-much.html](https://www.tiraniddo.dev/2020/04/sharing-logon-session-little-too-much.html)
+
+_Front image by [benzoix](https://www.freepik.com/free-ai-image/global-business-internet-network-connection-iot-internet-things-business-intelligence-concept-bus_49396795.htm) on Freepik_

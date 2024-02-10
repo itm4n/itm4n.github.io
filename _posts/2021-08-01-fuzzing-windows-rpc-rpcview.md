@@ -3,6 +3,7 @@ title: "Fuzzing Windows RPC with RpcView"
 layout: "post"
 categories: "Windows"
 tags: ["Research", "Privilege Escalation"]
+image: /assets/posts/2021-08-01-fuzzing-windows-rpc-rpcview/og.jpg
 ---
 
 The recent release of [PetitPotam](https://github.com/topotam/PetitPotam) by [@topotam77](https://twitter.com/topotam77) motivated me to get back to Windows RPC fuzzing. On this occasion, I thought it would be cool to write a blog post explaining how one can get into this security research area.
@@ -307,3 +308,5 @@ If you liked this post, don't hesitate to let me know on Twitter. I only scratch
 [https://github.com/topotam/PetitPotam](https://github.com/topotam/PetitPotam)
 - PacSec 2017 - A view into ALPC-RPC  
 [https://hakril.net/slides/A_view_into_ALPC_RPC_pacsec_2017.pdf](https://hakril.net/slides/A_view_into_ALPC_RPC_pacsec_2017.pdf)
+
+_Front image by [freepik](https://www.freepik.com/free-ai-image/futuristic-business-office-space_94952518.htm) on Freepik_

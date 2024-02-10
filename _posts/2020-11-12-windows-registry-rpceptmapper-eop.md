@@ -3,6 +3,7 @@ title: "Windows RpcEptMapper Service Insecure Registry Permissions EoP"
 layout: "post"
 categories: "Windows"
 tags: ["Research", "Vulnerability", "Privilege Escalation"]
+image: /assets/posts/2020-11-12-windows-registry-rpceptmapper-eop/og.jpg
 ---
 
 If you follow me on Twitter, you probably know that I developed my own Windows privilege escalation enumeration script - [PrivescCheck](https://github.com/itm4n/PrivescCheck) - which is a sort of updated and extended version of the famous [PowerUp](https://github.com/HarmJ0y/PowerUp). If you have ever run this script on __Windows 7__ or __Windows Server 2008 R2__, you probably noticed a weird recurring result and perhaps thought that it was a false positive just as I did. Or perhaps you're reading this and you have no idea what I am talking about. Anyway, the only thing you should know is that this script actually did spot a __Windows 0-day privilege escalation vulnerability__. Here is the story behind this finding...
@@ -392,3 +393,4 @@ Apart from the anecdotal side of this privilege escalation vulnerability, I thin
 - Microsoft - Creating the Application's Performance Key  
 [https://docs.microsoft.com/en-us/windows/win32/perfctrs/creating-the-applications-performance-key](https://docs.microsoft.com/en-us/windows/win32/perfctrs/creating-the-applications-performance-key)
 
+_Front image by [vecstock](https://www.freepik.com/free-ai-image/futuristic-skyscrapers-illuminate-city-night-life-generated-by-ai_41571303.htm) on Freepik_
