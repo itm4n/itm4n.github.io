@@ -1,8 +1,9 @@
 ---
 title: "Windows DLL Hijacking (Hopefully) Clarified" 
 layout: "post"
-categories: "Windows"
-tags: ["Privilege Escalation", "Exploit"]
+categories: ["Privilege Escalation"]
+tags: ["Privilege Escalation","Exploit"]
+image: /assets/og/privilege_escalation.png
 ---
 
 Whenever a "new" __DLL hijacking__ / __planting__ trick is posted on Twitter, it generates a lot of comments. "_It's not a vulnerability!_" or "_There is a lot of hijackable DLLs on Windows..._" are the most common reactions. Though, people often don't really speak about the same thing, hence the overall confusion which leads us nowhere. I don't pretend to know the ultimate truth but I felt the need to write this post in order to hopefully clarify some points.

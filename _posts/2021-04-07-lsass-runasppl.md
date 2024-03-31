@@ -1,9 +1,9 @@
 ---
 title: "Do You Really Know About LSA Protection (RunAsPPL)?" 
 layout: "post"
-categories: "Windows"
-tags: ["Bypass", "Exploit"]
-image: /assets/posts/2021-04-07-lsass-runasppl/og.jpg
+categories: ["Defense Evasion"]
+tags: ["Bypass","Exploit"]
+image: /assets/og/defense_evasion.png
 ---
 
 When it comes to protecting against credentials theft on Windows, enabling LSA Protection (a.k.a. `RunAsPPL`) on `LSASS` may be considered as the very first recommendation to implement. But do you really know what a PPL is? In this post, I want to cover some core concepts about _Protected Processes_ and also prepare the ground for a follow-up article that will be released in the coming days.
@@ -262,5 +262,3 @@ __Update 2021-04-25__ -- The second part is now available here: [Bypassing LSA P
 
 - Windows Internals 7th edition (Part 1)  
 [https://docs.microsoft.com/en-us/sysinternals/resources/windows-internals](https://docs.microsoft.com/en-us/sysinternals/resources/windows-internals)
-
-_Front image by [freepik](https://www.freepik.com/free-ai-image/view-futuristic-looking-spaceship_58508633.htm) on Freepik_

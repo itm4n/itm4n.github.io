@@ -1,8 +1,9 @@
 ---
 title: "CDPSvc DLL Hijacking - From LOCAL SERVICE to SYSTEM" 
 layout: "post"
-categories: "Windows"
-tags: ["Research", "Privilege Escalation", "Exploit"]
+categories: ["Privilege Escalation"]
+tags: ["Research","Privilege Escalation","Exploit"]
+image: /assets/og/privilege_escalation.png
 ---
 
 A DLL hijacking "vulnerability" in the __CDPSvc__ service was reported to Microsoft at least two times this year. As per their policy though, ___DLL planting issues that fall into the category of PATH directories DLL planting are treated as won't fix___ , which means that it won't be addressed (at least in the near future). This case is very similar to the IKEEXT one in Windows Vista/7/8. The big difference is that __CDPSvc__ runs as `LOCAL SERVICE` instead of `SYSTEM` so getting higher privileges requires an extra step.

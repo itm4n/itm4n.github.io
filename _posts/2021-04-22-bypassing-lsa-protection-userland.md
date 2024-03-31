@@ -1,9 +1,9 @@
 ---
 title: "Bypassing LSA Protection in Userland" 
 layout: "post"
-categories: "Windows"
-tags: ["Research", "Bypass", "Exploit"]
-image: /assets/posts/2021-04-22-bypassing-lsa-protection-userland/og.jpg
+categories: ["Defense Evasion"]
+tags: ["Research","Bypass","Exploit"]
+image: /assets/og/defense_evasion.png
 ---
 
 In 2018, James Forshaw published an article in which he briefly mentioned a trick that could be used to inject arbitrary code into a PPL as an administrator. However, I feel like this post did not get the attention it deserved as it literally described a potential Userland exploit for bypassing PPL (which includes LSA Protection).
@@ -288,7 +288,5 @@ If you want to read the original publication or if you want to learn more about 
 
 - [@tiraniddo](https://twitter.com/tiraniddo) - Windows Exploitation Tricks: Exploiting Arbitrary Object Directory Creation for Local Elevation of Privilege - [link](https://googleprojectzero.blogspot.com/2018/08/windows-exploitation-tricks-exploiting.html)
 - [@_ForrestOrr](https://twitter.com/_ForrestOrr) - Masking Malicious Memory Artifacts - Part I: Phantom DLL Hollowing - [link](https://www.forrest-orr.net/post/malicious-memory-artifacts-part-i-dll-hollowing)
-
-_Front image by [freepik](https://www.freepik.com/free-ai-image/night-sky-with-galaxy-spaceship-flying-past-generative-ai_41073543.htm) on Freepik_
 
 ___This article was originally posted on SCRT's blog [here](https://blog.scrt.ch/2021/04/22/bypassing-lsa-protection-in-userland/).___

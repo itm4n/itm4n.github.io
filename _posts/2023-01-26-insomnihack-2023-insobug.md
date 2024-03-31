@@ -1,9 +1,9 @@
 ---
 title: "Insomni'hack 2023 CTF Teaser - InsoBug"
 layout: "post"
-categories: ["Windows"]
-tags: ["Exploit", "CTF"]
-image: /assets/posts/2023-01-28-insomnihack-2023-insobug/og.jpg
+categories: ["CTF"]
+tags: ["Exploit","CTF"]
+image: /assets/og/ctf.png
 ---
 
 For this edition of [Insomni'hack](https://insomnihack.ch/ctf-teaser-2023/), I wanted to create a special challenge based on my knowledge of some Windows internals. In this post, I will share some thoughts about the process and, most importantly, provide a detailed write-up.
@@ -684,5 +684,3 @@ When developing this challenge, I assumed that the participants would not necess
 [https://itm4n.github.io/from-rpcview-to-petitpotam/](https://itm4n.github.io/from-rpcview-to-petitpotam/)
 - Offensive Windows IPC Internals 2: RPC  
 [https://csandker.io/2021/02/21/Offensive-Windows-IPC-2-RPC.html](https://csandker.io/2021/02/21/Offensive-Windows-IPC-2-RPC.html)
-
-_Front image by [flatart](https://www.freepik.com/free-ai-image/cybercrime-concept-hacker-dark-room-with-computer-monitors_88897968.htm) on Freepik_

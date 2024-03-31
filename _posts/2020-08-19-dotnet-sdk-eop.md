@@ -1,9 +1,9 @@
 ---
 title: "Windows .Net Core SDK Elevation of Privilege" 
 layout: "post"
-categories: "Windows"
-tags: ["Research", "Vulnerability", "Privilege Escalation", "Exploit"]
-image: /assets/posts/2020-08-19-dotnet-sdk-eop/og.jpg
+categories: ["Privilege Escalation"]
+tags: ["Research","Vulnerability","Privilege Escalation","Exploit"]
+image: /assets/og/privilege_escalation.png
 ---
 
 There was a weird bug in the __DotNet Core Toolset installer__ that allowed any local user to __elevate their privileges__ to SYSTEM. In this blog post, I want to share the details of this bug that was silently (but only partially) fixed despite not being acknowledged as a vulnerability by Microsoft.
@@ -209,5 +209,3 @@ Unfortunately, according to my latest tests, the `%USERPROFILE%` variable still 
 
 - dnSpy  
 [dnSpy](https://github.com/0xd4d/dnSpy)
-
-_Front image by [benzoix](https://www.freepik.com/free-ai-image/global-business-internet-network-connection-iot-internet-things-business-intelligence-concept-bus_49396176.htm) on Freepik_

@@ -1,8 +1,9 @@
 ---
 title: "Weaponizing Privileged File Writes with the USO Service - Part 2/2"
 layout: "post"
-categories: "Windows"
-tags: ["Research", "Privilege Escalation", "Exploit"]
+categories: ["Privilege Escalation"]
+tags: ["Research","Privilege Escalation","Exploit"]
+image: /assets/og/privilege_escalation.png
 ---
 
 In the previous post, I showed how the __USO client__ could be used to interact with the __USO service__ and thus have it load the `windowscoredeviceinfo.dll` DLL on demand with the `StartScan` option. I wasn't totally satisfied with this though. So, I reverse engineered a part of the client and the server in order to __replicate its behavior as a standalone project__ that could be reused in future exploits. This is what I'll try to show and explain in this second part.  

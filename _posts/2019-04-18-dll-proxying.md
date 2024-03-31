@@ -1,8 +1,9 @@
 ---
 title: "Windows Privilege Escalation - DLL Proxying"
 layout: "post"
-categories: "Windows"
-tags: ["Privilege Escalation", "Exploit"]
+categories: ["Privilege Escalation"]
+tags: ["Privilege Escalation","Exploit"]
+image: /assets/og/privilege_escalation.png
 ---
 
 __DLL Hijacking__ is the first Windows privilege escalation technique I worked on as a junior pentester, with the IKEEXT service on Windows 7 (or Windows Server 2008 R2). Here, I'd like to discuss one of its variants - __DLL Proxying__ - and provide a step-by-step guide for __easily crafting a custom DLL wrapper__ in the context of a privilege escalation. 

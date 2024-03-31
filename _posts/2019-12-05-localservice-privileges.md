@@ -1,8 +1,9 @@
 ---
 title: "Give Me Back My Privileges! Please?" 
 layout: "post"
-categories: "Windows"
-tags: ["Research", "Privilege Escalation", "Exploit"]
+categories: ["Privilege Escalation"]
+tags: ["Research","Privilege Escalation","Exploit"]
+image: /assets/og/privilege_escalation.png
 ---
 
 I want to tell you the story of a service account which lost all its powers (a.k.a. privileges). Windows world is getting increasingly ruthless and when the system considers you are not worthy, this is what happens. Fortunately for our service account, all is not lost, there's still hope. In this merciless world, you can always turn to the old sages to find some comfort and support. Among them, the Task Scheduler might be willing to help and restore what was lost, provided that you ask kindly...

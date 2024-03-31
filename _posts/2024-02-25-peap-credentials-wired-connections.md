@@ -1,9 +1,9 @@
 ---
 title: "Extracting PEAP Credentials from Wired Network Profiles"
 layout: "post"
-categories: ["Windows"]
+categories: ["Research"]
 tags: ["Research"]
-image: /assets/posts/2024-02-25-peap-credentials-wired-connections/og.jpg
+image: /assets/og/research.png
 ---
 
 A colleague of mine recently found himself in a situation where he had physical access to a Windows machine connected to a wired network using 802.1X and saved user credentials for the authentication. Naturally, he wanted to extract those credentials. Nothing extraordinary about that you might think, and yet, there was a twist...
@@ -267,5 +267,3 @@ _Decrypting the DPAPI blob with "dpapi.py"_
 It was a fun ride, and most importantly, a good opportunity to play around with DPAPI. Hopefully, this post will help anyone who finds themselves in a similar situation.
 
 One question remains though, why on earth would you use a hardcoded salt / entropy value? I'm no crypto expert, but I can reasonably say that I have a basic understanding of crypto concepts, and to me, this doesn't make sense. It looks like it serves just as an obfuscation trick.
-
-_Front image by [vecstock](https://www.freepik.com/free-ai-image/global-business-internet-network-connection-iot-internet-things-business-intelligence-concept-bus_49396795.htm) on Freepik_

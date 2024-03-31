@@ -1,9 +1,9 @@
 ---
 title: "From RpcView to PetitPotam" 
 layout: "post"
-categories: "Windows"
-tags: ["Research", "Exploit"]
-image: /assets/posts/2021-09-02-from-rpcview-to-petitpotam/og.jpg
+categories: ["Research"]
+tags: ["Research","Exploit"]
+image: /assets/og/research.png
 ---
 
 In the previous post we saw how to set up a Windows 10 machine in order to manually analyze Windows RPC with [RpcView](https://rpcview.org/). In this post, we will see how the information provided by this tool can be used to create a basic RPC client application in C/C++. Then, we will see how we can reproduce the trick used in the [PetitPotam](https://github.com/topotam/PetitPotam) tool.
@@ -598,5 +598,3 @@ Finally, implementing an RPC client in C/C++ isn't necessarily the best approach
 [https://csandker.io/2021/02/21/Offensive-Windows-IPC-2-RPC.html](https://csandker.io/2021/02/21/Offensive-Windows-IPC-2-RPC.html)
 - Calling Local Windows RPC Servers from .NET by [@tiraniddo](https://twitter.com/tiraniddo)  
 [https://googleprojectzero.blogspot.com/2019/12/calling-local-windows-rpc-servers-from.html](https://googleprojectzero.blogspot.com/2019/12/calling-local-windows-rpc-servers-from.html)
-
-_Front image by [Sketchepedia](https://www.freepik.com/free-ai-image/colorful-hippo-with-title-galaxy-it_42055605.htm) on Freepik_

@@ -1,9 +1,9 @@
 ---
 title: "Revisiting a Credential Guard Bypass" 
 layout: "post"
-categories: "Windows"
-tags: ["Research", "Bypass"]
-image: /assets/posts/2022-05-23-credential-guard-bypass/og.jpg
+categories: ["Defense Evasion"]
+tags: ["Research","Bypass"]
+image: /assets/og/defense_evasion.png
 ---
 
 You probably have already heard or read about this clever __Credential Guard__ bypass which consists in simply patching two global variables in LSASS. All the implementations I have found rely on hardcoded offsets, so I wondered how difficult it would be to retrieve these values at run-time instead.
@@ -386,5 +386,3 @@ Lastly, this was a cool little challenge, not too difficult, and as always I lea
 [https://winbindex.m417z.com/](https://winbindex.m417z.com/)
 - Nynaeve - Most data references in x64 are RIP-relative  
 [https://www.nynaeve.net/?p=192`](https://www.nynaeve.net/?p=192)
-
-_Front image by [freepik](https://www.freepik.com/free-ai-image/door-leading-magical-world_94543138.htm) on Freepik_
