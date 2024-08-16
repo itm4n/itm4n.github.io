@@ -136,7 +136,7 @@ assets:
     env: # [development | production]
 
 pwa:
-  enabled: true # the option for PWA feature (installable)
+  enabled: false # the option for PWA feature (installable)
   cache:
     enabled: false # the option for PWA offline cache
     # Paths defined here will be excluded from the PWA cache.
