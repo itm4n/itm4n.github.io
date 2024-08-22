@@ -115,6 +115,7 @@ in
     p7zip
     pavucontrol # PulseAudio Volume Control
     podman # A program for managing pods, containers and container images.
+    powershell
     python311 # Python interpreter
     python311Packages.pip # Pip installer
     python311Packages.pycryptodome
@@ -130,6 +131,13 @@ in
     vim
     virtualenv
     vscode
+    vscode-extensions.ms-vscode.powershell
+    vscode-extensions.ms-python.python
+    vscode-extensions.ms-vscode.cpptools-extension-pack
+    vscode-extensions.ms-azuretools.vscode-docker
+    vscode-extensions.streetsidesoftware.code-spell-checker
+    vscode-extensions.gruntfuggly.todo-tree
+    vscode-extensions.mechatroner.rainbow-csv
     wget
     which
     xcape # Utility to configure modifier keys to act as other keys
@@ -225,6 +233,49 @@ in
         type = "socks4";
         host = "127.0.0.1";
         port = 1080;
+      };
+    };
+  };
+
+  # https://nixos.org/manual/nixos/stable/options#opt-programs.firefox.enable
+  programs.firefox = {
+    enable = true;
+    languagePacks = [ "en-GB" "en-US" "fr" ];
+    policies = {
+      DisableTelemetry = true;
+      DisableFirefoxStudies = true;
+      DisablePocket = true;
+      DisableFirefoxAccounts = true;
+      DisableAccounts = true;
+      OverrideFirstRunPage = "";
+      OverridePostUpdatePage = "";
+      DontCheckDefaultBrowser = true;
+      DisplayBookmarksToolbar = "never";
+      ExtensionSettings = {
+        "uBlock0@raymondhill.net" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+          installation_mode = "force_installed";
+        };
+        "foxyproxy@eric.h.jung" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/file/4228676/foxyproxy_standard-8.9.xpi";
+          installation_mode = "force_installed";
+        };
+      };
+      Preferences = {
+        "extensions.pocket.enabled" = false;
+        "browser.topsites.contile.enabled" = false;
+        "browser.formfill.enable" = false;
+        "browser.search.suggest.enabled" = false;
+        "browser.search.suggest.enabled.private" = false;
+        "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
+        "browser.newtabpage.activity-stream.feeds.snippets" = false;
+        "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
+        "browser.newtabpage.activity-stream.section.highlights.includeBookmarks" = false;
+        "browser.newtabpage.activity-stream.section.highlights.includeDownloads" = false;
+        "browser.newtabpage.activity-stream.section.highlights.includeVisited" = false;
+        "browser.newtabpage.activity-stream.showSponsored" = false;
+        "browser.newtabpage.activity-stream.system.showSponsored" = false;
+        "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
       };
     };
   };
