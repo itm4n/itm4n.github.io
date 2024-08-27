@@ -16,17 +16,17 @@ timezone: Europe/Paris
 
 title: itm4n's blog                          # the main title
 
-tagline: Pentesting & Windows security research   # it will display as the sub-title
+tagline: Pentesting & Windows security research   # it will display as the subtitle
 
 description: >-                        # used by seo meta and the atom feed
   A blog about pentesting with a focus on Windows security research.
 
 # Fill in the protocol & hostname for your site.
-# e.g. 'https://username.github.io', note that it does not end with a '/'.
+# E.g. 'https://username.github.io', note that it does not end with a '/'.
 url: 'https://itm4n.github.io'
 
 github:
-  username: itm4n             # change to your github username
+  username: itm4n             # change to your GitHub username
 
 # twitter:
 #   username: twitter_username            # change to your twitter username
@@ -38,8 +38,8 @@ social:
   email: itm4n@contoso.com             # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://infosec.exchange/@itm4n      # change to your twitter homepage
-    - https://github.com/itm4n       # change to your github homepage
+    - https://infosec.exchange/@itm4n      # change to your Twitter homepage
+    - https://github.com/itm4n       # change to your GitHub homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
     # - https://www.linkedin.com/in/username
@@ -70,10 +70,12 @@ analytics:
     domain: # fill in your Matomo domain
   cloudflare:
     id: # fill in your Cloudflare Web Analytics token
+  fathom:
+    id: # fill in your Fathom Site ID
 
-# Pageviews settings
+# Page views settings
 pageviews:
-  provider: # now only supports 'goatcounter'D
+  provider: # now only supports 'goatcounter'
 
 # Prefer color scheme setting.
 #
@@ -83,8 +85,8 @@ pageviews:
 #
 # Available options:
 #
-#     light  - Use the light color scheme
-#     dark   - Use the dark color scheme
+#     light — Use the light color scheme
+#     dark — Use the dark color scheme
 #
 theme_mode: # [light | dark]
 
@@ -106,7 +108,7 @@ social_preview_image: # string, local or CORS resources
 toc: true
 
 comments:
-  # Global switch for the post comment system. Keeping it empty means disabled.
+  # Global switch for the post-comment system. Keeping it empty means disabled.
   provider: # [disqus | utterances | giscus]
   # The provider options are as follows:
   disqus:
@@ -136,9 +138,9 @@ assets:
     env: # [development | production]
 
 pwa:
-  enabled: false # the option for PWA feature (installable)
+  enabled: false # The option for PWA feature (installable)
   cache:
-    enabled: false # the option for PWA offline cache
+    enabled: false # The option for PWA offline cache
     # Paths defined here will be excluded from the PWA cache.
     # Usually its value is the `baseurl` of another website that
     # shares the same domain name as the current website.
@@ -193,10 +195,6 @@ defaults:
     values:
       layout: page
       permalink: /:title/
-  - scope:
-      path: assets/js/dist
-    values:
-      swcache: true
 
 sass:
   style: compressed
