@@ -1,9 +1,9 @@
 ---
 title: "Ghost in the PPL Part 2: From BYOVDLL to Arbitrary Code Execution in LSASS"
 layout: "post"
-categories: ["Research"]
+categories: ["Defense Evasion"]
 tags: ["Bypass","Exploit","Research"]
-image: /assets/og/research.png
+image: /assets/og/defense_evasion.png
 ---
 
 In the previous part, I showed how a technique called "Bring Your Own Vulnerable DLL" (BYOVDLL) could be used to reintroduce known vulnerabilities in LSASS, even when it's protected. In this second part, I'm going to discuss the strategies I considered and explored to improve my proof-of-concept, and hopefully achieve arbitrary code execution.

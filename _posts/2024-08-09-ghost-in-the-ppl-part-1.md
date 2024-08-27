@@ -1,9 +1,9 @@
 ---
 title: "Ghost in the PPL Part 1: BYOVDLL"
 layout: "post"
-categories: ["Research"]
+categories: ["Defense Evasion"]
 tags: ["Bypass","Exploit","Research"]
-image: /assets/og/research.png
+image: /assets/og/defense_evasion.png
 ---
 
 In this series of blog posts, I will explore yet another avenue for bypassing LSA Protection in Userland. I will also detail the biggest challenges I faced while developing a proof-of-concept, and discuss some novel techniques and tricks to load an arbitrary DLL in LSASS, or even dump its memory.
