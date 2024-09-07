@@ -82,7 +82,7 @@ NTSTATUS NTAPI RtlReportSilentProcessExit(
 );
 ```
 
-However, since the process is protected, I expected the dump to be performed by `WerFaultSecure.exe`, in which case it would be encrypted. Anyway, this theory was easy to test, so I decided to give it a shot anyway.
+However, since the process is protected, I expected the dump to be performed by `WerFaultSecure.exe`, in which case it would be encrypted. Anyway, this theory was easy to test, so I decided to give it a shot.
 
 To do so, we just need to configure a couple of registry keys, replace the address of `OutputDebugStringW` with the address of `RtlReportSilentProcessExit`, and set the value of the first parameter to `(HANDLE)-1` (pseudo-handle of the current process).
 

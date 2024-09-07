@@ -145,7 +145,7 @@ Part of the answer came from a GitHub [issue](https://github.com/virtio-win/kvm-
 ![Installation of the Cryptographic Provider Development Kit](/assets/posts/2024-08-09-ghost-in-the-ppl-part-1/cpdk-installation.png)
 _Installation of the Cryptographic Provider Development Kit_
 
-Tu use it, you have to update the include path of your C/C++ project and add the entry `$(WindowsSdkDir)Cryptographic Provider Development Kit\Include`.
+To use it, you have to update the include path of your C/C++ project and add the entry `$(WindowsSdkDir)Cryptographic Provider Development Kit\Include`.
 
 ![Visual Studio - Adding the CPDK to the include path of a project](/assets/posts/2024-08-09-ghost-in-the-ppl-part-1/project-include-path-update-cpdk.png)
 _Visual Studio - Adding the CPDK to the include path of a project_
