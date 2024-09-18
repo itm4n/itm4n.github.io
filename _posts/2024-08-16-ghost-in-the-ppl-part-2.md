@@ -135,7 +135,7 @@ _System Informer - List of user processes opened by LSASS_
 
 This is not the case with every user process, but I was able to reproduce this behavior reliably by starting `powershell.exe`.
 
-<p><video controls muted preload="metadata" width="100%" src="/assets/posts/2024-08-16-ghost-in-the-ppl-part-2/system-informer-lsass-opening-powershell-handle.webm"></video></p>
+{% include embed/video.html src='/assets/posts/2024-08-16-ghost-in-the-ppl-part-2/system-informer-lsass-opening-powershell-handle.webm' title='Coercing LSASS to open a handle to a PowerShell process' muted=true %}
 
 This is interesting because it means that there is a way to coerce LSASS to open our process, without executing code within it. To find out how this works, I used API Monitor to identify calls to `OpenProcess` or `NtOpenProcess` in `lsass.exe`.
 
@@ -228,7 +228,7 @@ status = SspirDisconnectRpc(
 
 Below is a short demo that shows the expected behavior. After invoking `SspirConnectRpc`, a new handle to our process is opened in LSASS, and is closed when invoking `SspirDisconnectRpc`.
 
-<p><video controls muted preload="metadata" width="100%" src="/assets/posts/2024-08-16-ghost-in-the-ppl-part-2/system-informer-lsass-opening-sspi-poc-handle.webm"></video></p>
+{% include embed/video.html src='/assets/posts/2024-08-16-ghost-in-the-ppl-part-2/system-informer-lsass-opening-sspi-poc-handle.webm' title='Coercing LSASS to open a handle to a client application' muted=true %}
 
 This trick provides a reliable way to coerce LSASS to open our process. In addition, the system allows the enumeration of handles for any process, even when they are protected. Although we cannot know exactly what object is referenced by a handle without the ability to duplicate it, we do know what type of object it represents (e.g. Process, Thread, File, etc.). Therefore, by comparing the lists of process handles in LSASS before and after the call to `SspirConnectRpc`, it is possible to find the one associated to the client process.
 

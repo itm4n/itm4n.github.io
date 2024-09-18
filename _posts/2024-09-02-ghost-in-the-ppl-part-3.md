@@ -184,7 +184,7 @@ This makes sense because [Schannel](https://learn.microsoft.com/en-us/windows-se
 
 Following that discovery, I created a proof-of-concept application to test this theory, and was able to coerce LSASS to load the Autodial DLL this way.
 
-<p><video controls muted preload="metadata" width="100%" src="/assets/posts/2024-09-02-ghost-in-the-ppl-part-3/poc-lsass-autodial.webm"></video></p>
+{% include embed/video.html src='/assets/posts/2024-09-02-ghost-in-the-ppl-part-3/poc-lsass-autodial.webm' title='Coercing LSASS to load the Autodial DLL' muted=true %}
 
 Unfortunately, the result is not as reliable as I expected. It seems there is a caching mechanism involved, which prevents the same URL from being queried twice. Anyway, I couldn't find a better solution, so I'd have to work with that.
 
@@ -263,7 +263,7 @@ To summarize, the final exploit does the following:
 8. If the opportunistic lock is triggered, it checks whether a dump file was created in the output folder.
 9. Once done, it cleans everything up.
 
-<p><video controls muted preload="metadata" width="100%" src="/assets/posts/2024-09-02-ghost-in-the-ppl-part-3/exploit.webm"></video></p>
+{% include embed/video.html src='/assets/posts/2024-09-02-ghost-in-the-ppl-part-3/exploit.webm' title='Full Proof-of-Concept' muted=true %}
 
 ## Conclusion
 
