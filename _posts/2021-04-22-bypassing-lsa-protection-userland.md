@@ -1,9 +1,8 @@
 ---
 title: "Bypassing LSA Protection in Userland" 
 layout: "post"
-categories: ["Defense Evasion"]
-tags: ["Research","Bypass","Exploit"]
-image: /assets/og/defense_evasion.png
+categories: [ "Defense Evasion" ]
+tags: [ "Research", "Bypass", "Exploit" ]
 ---
 
 In 2018, James Forshaw published an article in which he briefly mentioned a trick that could be used to inject arbitrary code into a PPL as an administrator. However, I feel like this post did not get the attention it deserved as it literally described a potential Userland exploit for bypassing PPL (which includes LSA Protection).

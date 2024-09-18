@@ -1,9 +1,8 @@
 ---
 title: "CVE-2017-13130 - BMC Patrol 'mcmnm' - Privilege Escalation via a Vulnerable SUID Binary"
 layout: "post"
-categories: ["Privilege Escalation"]
-tags: ["Research","Vulnerability","Privilege Escalation","Exploit"]
-image: /assets/og/privilege_escalation.png
+categories: [ "Privilege Escalation" ]
+tags: [ "Research", "Vulnerability", "Privilege Escalation", "Exploit" ]
 ---
 
 A vulnerability was discovered in the `mcmnm` binary. It is compiled with a `RPATH` starting with `.:`. Therefore, any user can craft a malicious library (e.g.: `libmcmclnx.so`) and then run `mcmnm` from the same directory to execute code as _root_.

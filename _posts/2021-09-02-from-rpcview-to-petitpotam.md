@@ -1,9 +1,8 @@
 ---
 title: "From RpcView to PetitPotam" 
 layout: "post"
-categories: ["Research"]
-tags: ["Research","Exploit"]
-image: /assets/og/research.png
+categories: [ "Research" ]
+tags: [ "Research", "Exploit" ]
 ---
 
 In the previous post we saw how to set up a Windows 10 machine in order to manually analyze Windows RPC with [RpcView](https://rpcview.org/). In this post, we will see how the information provided by this tool can be used to create a basic RPC client application in C/C++. Then, we will see how we can reproduce the trick used in the [PetitPotam](https://github.com/topotam/PetitPotam) tool.

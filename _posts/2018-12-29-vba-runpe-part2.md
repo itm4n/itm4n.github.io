@@ -1,9 +1,8 @@
 ---
 title: "VBA RunPE - Breaking Out of Highly Constrained Desktop Environments - Part 2/2"
 layout: "post"
-categories: ["Defense Evasion"]
-tags: ["Research","Bypass"]
-image: /assets/og/defense_evasion.png
+categories: [ "Defense Evasion" ]
+tags: [ "Research", "Bypass" ]
 ---
 
 In the previous part, I discussed the method used by [Didier Stevens](https://blog.didierstevens.com/) to run `cmd.exe` within _Excel_ (or _Word_) thanks to a custom shellcode in VBA. I also outlined its limitations. In this part, I'll try to explain how I was able to address them in order to provide a more versatile method that pentesters can easily reuse when required. The code can be found [here](https://github.com/itm4n/VBA-RunPE).

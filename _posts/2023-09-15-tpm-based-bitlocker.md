@@ -1,9 +1,8 @@
 ---
 title: "A Deep Dive into TPM-based BitLocker Drive Encryption"
 layout: "post"
-categories: ["Research"]
-tags: ["Research"]
-image: /assets/og/research.png
+categories: [ "Research" ]
+tags: [ "Research" ]
 ---
 
 When I investigated CVE-2022-41099, a BitLocker Drive Encryption bypass through the Windows Recovery Environment (WinRE), the fact that the latter was able to transparently access an encrypted drive without requiring the recovery password struck me. My initial thought was that there had to be a way to reproduce this behavior and obtain the master key from the Recovery Environment (WinRE). The outcome of a generic BitLocker bypass was too tempting not to explore this idea...

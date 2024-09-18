@@ -1,9 +1,8 @@
 ---
 title: "Windows RpcEptMapper Service Insecure Registry Permissions EoP" 
 layout: "post"
-categories: ["Privilege Escalation"]
-tags: ["Research","Vulnerability","Privilege Escalation"]
-image: /assets/og/privilege_escalation.png
+categories: [ "Privilege Escalation" ]
+tags: [ "Research", "Vulnerability", "Privilege Escalation" ]
 ---
 
 If you follow me on Twitter, you probably know that I developed my own Windows privilege escalation enumeration script - [PrivescCheck](https://github.com/itm4n/PrivescCheck) - which is a sort of updated and extended version of the famous [PowerUp](https://github.com/HarmJ0y/PowerUp). If you have ever run this script on __Windows 7__ or __Windows Server 2008 R2__, you probably noticed a weird recurring result and perhaps thought that it was a false positive just as I did. Or perhaps you're reading this and you have no idea what I am talking about. Anyway, the only thing you should know is that this script actually did spot a __Windows 0-day privilege escalation vulnerability__. Here is the story behind this finding...

@@ -1,9 +1,8 @@
 ---
 title: "Revisiting a Credential Guard Bypass" 
 layout: "post"
-categories: ["Defense Evasion"]
-tags: ["Research","Bypass"]
-image: /assets/og/defense_evasion.png
+categories: [ "Defense Evasion" ]
+tags: [ "Research", "Bypass" ]
 ---
 
 You probably have already heard or read about this clever __Credential Guard__ bypass which consists in simply patching two global variables in LSASS. All the implementations I have found rely on hardcoded offsets, so I wondered how difficult it would be to retrieve these values at run-time instead.

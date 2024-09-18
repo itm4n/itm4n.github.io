@@ -1,9 +1,8 @@
 ---
 title: "Bypassing PPL in Userland (again)"
 layout: "post"
-categories: ["Defense Evasion"]
-tags: ["Research","Bypass","Exploit"]
-image: /assets/og/defense_evasion.png
+categories: [ "Defense Evasion" ]
+tags: [ "Research", "Bypass", "Exploit" ]
 ---
 
 This post is a sequel to [Bypassing LSA Protection in Userland](https://blog.scrt.ch/2021/04/22/bypassing-lsa-protection-in-userland/) and [The End of PPLdump](https://itm4n.github.io/the-end-of-ppldump/). Here, I will discuss how I was able to bypass the latest mitigation implemented by Microsoft and develop a new Userland exploit for injecting arbitrary code in a PPL with the highest signer type.

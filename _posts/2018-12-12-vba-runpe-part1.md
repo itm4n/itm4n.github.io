@@ -1,9 +1,8 @@
 ---
 title: "VBA RunPE - Breaking Out of Highly Constrained Desktop Environments - Part 1/2"
 layout: "post"
-categories: ["Defense Evasion"]
-tags: ["Research","Bypass"]
-image: /assets/og/defense_evasion.png
+categories: [ "Defense Evasion" ]
+tags: [ "Research", "Bypass" ]
 ---
 
 In this post, I'd like to share a technique that I often use to break out of highly constrained desktop environments such as CItrix. The only prerequisite is to have access to _Microsoft Word_ or _Excel_ with the VBA editor enabled. 

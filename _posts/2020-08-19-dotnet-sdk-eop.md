@@ -1,9 +1,8 @@
 ---
 title: "Windows .Net Core SDK Elevation of Privilege" 
 layout: "post"
-categories: ["Privilege Escalation"]
-tags: ["Research","Vulnerability","Privilege Escalation","Exploit"]
-image: /assets/og/privilege_escalation.png
+categories: [ "Privilege Escalation" ]
+tags: [ "Research", "Vulnerability", "Privilege Escalation", "Exploit" ]
 ---
 
 There was a weird bug in the __DotNet Core Toolset installer__ that allowed any local user to __elevate their privileges__ to SYSTEM. In this blog post, I want to share the details of this bug that was silently (but only partially) fixed despite not being acknowledged as a vulnerability by Microsoft.

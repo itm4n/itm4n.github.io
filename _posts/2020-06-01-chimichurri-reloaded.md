@@ -1,9 +1,8 @@
 ---
 title: "Chimichurri Reloaded - Giving a Second Life to a 10-year old Windows Vulnerability" 
 layout: "post"
-categories: ["Privilege Escalation"]
-tags: ["Research","Privilege Escalation","Exploit"]
-image: /assets/og/privilege_escalation.png
+categories: [ "Privilege Escalation" ]
+tags: [ "Research", "Privilege Escalation", "Exploit" ]
 ---
 
 This is a kind of follow-up to my last post, in which I discussed a technique that can be used for elevating privileges to SYSTEM when you have impersonation capabilities. In the last part, I explained how this type of vulnerability _could be fixed_ and I even illustrated it with a concrete example of a workaround that was implemented by Microsoft 10 years ago in the context of the Service Tracing feature. Though, I also insinuated that this security measure could be bypassed. So, let's see how we can make a 10-year old _vulnerability_ great again...

@@ -1,9 +1,8 @@
 ---
 title: "Fuzzing Windows RPC with RpcView" 
 layout: "post"
-categories: ["Research"]
-tags: ["Research","Privilege Escalation"]
-image: /assets/og/research.png
+categories: [ "Research" ]
+tags: [ "Research", "Privilege Escalation" ]
 ---
 
 The recent release of [PetitPotam](https://github.com/topotam/PetitPotam) by [@topotam77](https://twitter.com/topotam77) motivated me to get back to Windows RPC fuzzing. On this occasion, I thought it would be cool to write a blog post explaining how one can get into this security research area.

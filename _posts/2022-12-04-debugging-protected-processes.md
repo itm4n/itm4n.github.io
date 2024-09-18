@@ -1,9 +1,8 @@
 ---
 title: "Debugging Protected Processes" 
 layout: "post"
-categories: ["Research"]
-tags: ["Research"]
-image: /assets/og/research.png
+categories: [ "Research" ]
+tags: [ "Research" ]
 ---
 
 Whenever I need to debug a protected process, I usually disable the protection in the Kernel so that I can attach a User-mode debugger. This has always served me well until it sort of backfired.

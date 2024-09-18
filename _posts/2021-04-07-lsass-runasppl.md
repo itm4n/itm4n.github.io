@@ -1,9 +1,8 @@
 ---
 title: "Do You Really Know About LSA Protection (RunAsPPL)?" 
 layout: "post"
-categories: ["Defense Evasion"]
-tags: ["Bypass","Exploit"]
-image: /assets/og/defense_evasion.png
+categories: [ "Defense Evasion" ]
+tags: [ "Bypass", "Exploit" ]
 ---
 
 When it comes to protecting against credentials theft on Windows, enabling LSA Protection (a.k.a. `RunAsPPL`) on `LSASS` may be considered as the very first recommendation to implement. But do you really know what a PPL is? In this post, I want to cover some core concepts about _Protected Processes_ and also prepare the ground for a follow-up article that will be released in the coming days.

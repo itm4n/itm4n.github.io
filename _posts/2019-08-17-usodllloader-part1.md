@@ -1,9 +1,8 @@
 ---
 title: "Weaponizing Privileged File Writes with the USO Service - Part 1/2"
 layout: "post"
-categories: ["Privilege Escalation"]
-tags: ["Research","Privilege Escalation","Exploit"]
-image: /assets/og/privilege_escalation.png
+categories: [ "Privilege Escalation" ]
+tags: [ "Research", "Privilege Escalation", "Exploit" ]
 ---
 
 The [DiagHub DLL loading](https://googleprojectzero.blogspot.com/2018/04/windows-exploitation-tricks-exploiting.html) technique found by James Forshaw (a.k.a. [@tiraniddo](https://twitter.com/tiraniddo)) has become very famous. Whenever you found __an arbitrary file write as SYSTEM__ in Windows or in some third-party software, you could use this trick to __get code execution on demand__, and without rebooting. Unfortunately (or fortunately depending on your point of view), this method was __mitigated by Microsoft in Windows 10 build 1903__. Andrea Pierini (aka [@decoder_it](https://twitter.com/decoder_it)) mentionned this briefly on [Twitter](https://twitter.com/decoder_it/status/1131247394031579138). Here, I want to share an alternative method I found while looking for DLL hijacking weaknesses on the most recent version of Windows.

@@ -1,9 +1,8 @@
 ---
 title: "Insomni'hack 2024 CTF Teaser - Cache Cache"
 layout: "post"
-categories: ["CTF"]
-tags: ["Exploit","CTF"]
-image: /assets/og/ctf.png
+categories: [ "CTF" ]
+tags: [ "Exploit", "CTF" ]
 ---
 
 Last year, for the [Insomni'hack 2023 CTF Teaser](https://insomnihack.ch/ctf-teaser-2023/), I created a challenge based on a logic bug in a Windows RPC server. I was pleased with the result, so I renewed the experience. Besides, I already knew what type of bug to tackle for this new edition. :smiling_imp:

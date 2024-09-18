@@ -1,9 +1,8 @@
 ---
 title: "CVE-2019-19544 - CA Dollar Universe 5.3.3 'uxdqmsrv' - Privilege Escalation via a Vulnerable SUID Binary"
 layout: "post"
-categories: ["Privilege Escalation"]
-tags: ["Research","Vulnerability","Privilege Escalation","Exploit"]
-image: /assets/og/privilege_escalation.png
+categories: [ "Privilege Escalation" ]
+tags: [ "Research", "Vulnerability", "Privilege Escalation", "Exploit" ]
 ---
 
 A vulnerability was discovered in the `uxdqmsrv` binary. It consists in an arbitrary file write as _root_ that can be leveraged by any local user to gain full _root_ privileges on the host (UNIX/Linux only).

@@ -1,9 +1,8 @@
 ---
 title: "Windows Server 2008R2-2019 NetMan DLL Hijacking" 
 layout: "post"
-categories: ["Privilege Escalation"]
-tags: ["Research","Privilege Escalation","Exploit"]
-image: /assets/og/privilege_escalation.png
+categories: [ "Privilege Escalation" ]
+tags: [ "Research", "Privilege Escalation", "Exploit" ]
 ---
 
 What if I told you that __all editions of Windows Server__, __from 2008R2 to 2019__, are prone to __a DLL Hijacking in the `%PATH%` directories__? What if I also told you that the impacted service runs as `NT AUTHORITY\SYSTEM` and that the DLL loading __can be triggered by a normal user__, __on demand__, and without the need of a machine reboot? Provided that you found some `%PATH%` directories configured with weak permissions, this would probably be the most straightforward privilege escalation technique I know. I don't know why there hasn't been any publication about this yet. Anyway, I'll try to fill this gap.

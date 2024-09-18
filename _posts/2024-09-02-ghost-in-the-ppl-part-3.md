@@ -1,9 +1,8 @@
 ---
 title: "Ghost in the PPL Part 3: LSASS Memory Dump"
 layout: "post"
-categories: ["Defense Evasion"]
-tags: ["Bypass","Exploit","Research"]
-image: /assets/og/defense_evasion.png
+categories: [ "Defense Evasion" ]
+tags: [ "Bypass", "Exploit", "Research" ]
 ---
 
 ## Back to the Basics: MiniDumpWriteDump

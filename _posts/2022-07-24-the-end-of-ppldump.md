@@ -1,9 +1,8 @@
 ---
 title: "The End of PPLdump" 
 layout: "post"
-categories: ["Patch Analysis"]
-tags: ["Research","Patch Analysis"]
-image: /assets/og/patch_analysis.png
+categories: [ "Patch Analysis" ]
+tags: [ "Research", "Patch Analysis" ]
 ---
 
 A few days ago, an [issue](https://github.com/itm4n/PPLdump/issues/12) was opened for [PPLdump](https://github.com/itm4n/PPLdump) on GitHub, stating that it no longer worked on Windows 10 21H2 Build 19044.1826. I was skeptical at first so I fired up a new VM and started investigating. Here is what I found...

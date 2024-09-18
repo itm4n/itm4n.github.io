@@ -1,9 +1,8 @@
 ---
 title: "Insomni'hack 2023 CTF Teaser - InsoBug"
 layout: "post"
-categories: ["CTF"]
-tags: ["Exploit","CTF"]
-image: /assets/og/ctf.png
+categories: [ "CTF" ]
+tags: [ "Exploit", "CTF" ]
 ---
 
 For this edition of [Insomni'hack](https://insomnihack.ch/ctf-teaser-2023/), I wanted to create a special challenge based on my knowledge of some Windows internals. In this post, I will share some thoughts about the process and, most importantly, provide a detailed write-up.
