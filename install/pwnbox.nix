@@ -113,7 +113,6 @@ in
     openvpn
     oras # The ORAS project provides a way to push and pull OCI Artifacts to and from OCI Registries.
     p7zip
-    pavucontrol # PulseAudio Volume Control
     podman # A program for managing pods, containers and container images.
     powershell
     python311 # Python interpreter
@@ -161,7 +160,6 @@ in
     xfce.xfce4-panel
     xfce.xfce4-panel-profiles
     xfce.xfce4-power-manager
-    xfce.xfce4-pulseaudio-plugin
     xfce.xfce4-sensors-plugin
     xfce.xfce4-session
     xfce.xfce4-settings
@@ -533,8 +531,6 @@ in
         "plugins/plugin-206/update-interval" = 0;
         "plugins/plugin-207" = "systray";
         "plugins/plugin-207/square-icons" = true;
-        "plugins/plugin-208" = "pulseaudio";
-        "plugins/plugin-208/enable-keyboard-shortcuts" = true;
         "plugins/plugin-209" = "notification-plugin";
         "plugins/plugin-210" = "power-manager-plugin";
         "plugins/plugin-211" = "clock";
