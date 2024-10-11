@@ -89,6 +89,7 @@ in
     dhcpcd
     dig
     ent
+    exiftool
     file
     firefox
     freerdp
@@ -108,6 +109,7 @@ in
     killall
     mlocate
     nfs-utils
+    ntp
     oh-my-zsh
     openssl
     openvpn
@@ -139,6 +141,7 @@ in
     vscode-extensions.mechatroner.rainbow-csv
     wget
     which
+    whois
     xcape # Utility to configure modifier keys to act as other keys
     xclip
     xorg.xhost
@@ -205,6 +208,7 @@ in
     samba4Full
     seclists
     sqlmap
+    theharvester
     wfuzz
     wifite2
     wireshark-qt
@@ -399,6 +403,7 @@ in
 
   home-manager.users.${settings.username} = { pkgs, ... }: {
     home.stateVersion = "24.05";
+    home.sessionPath = [ "/home/${settings.username}/go/bin" ];
     # Hack to enable Ettercap to be used as a non-root user. Polkit policies 
     # on NixOS are broken. In the policy files, the effective path of the
     # binary is used to set "admin_gui" to "true". However, the launcher
