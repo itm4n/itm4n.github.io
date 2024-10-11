@@ -48,7 +48,7 @@ fi
 
 print_success "Created workspace folder: ${folder_path}"
 
-for d in "hosts" "loot" "nmap" "recon" "wordlists"
+for d in "hosts" "loot" "nmap" "recon" "resources" "screenshots" "wordlists"
 do
     mkdir "${folder_path}/${d}"
     if [ $? != 0 ]
