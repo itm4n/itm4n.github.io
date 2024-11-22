@@ -22,7 +22,8 @@ function print_usage_and_exit() {
 check_argc $# 1 || print_usage_and_exit
 ### END COMMON
 
-HOME_MANAGER_CHANNEL_URL="https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz"
+NIXOS_UNSTABLE_CHANNEL_URL="https://nixos.org/channels/nixos-unstable"
+HOME_MANAGER_CHANNEL_URL="https://github.com/nix-community/home-manager/archive/master.tar.gz"
 
 DIR_SCRIPTS_PATH=$(dirname "${DIR_SCRIPT}")
 DIR_ROOT_PATH=$(dirname "${DIR_SCRIPTS_PATH}")
@@ -31,6 +32,7 @@ CONFIG_PATH="${DIR_ROOT_PATH}/install/${CONFIG_FILE}"
 
 function helper_add_channels() {
     print_info "Adding channels..."
+    nix-channel --add $NIXOS_UNSTABLE_CHANNEL_URL nixos
     nix-channel --add $HOME_MANAGER_CHANNEL_URL home-manager || return 1
     return 0
 }

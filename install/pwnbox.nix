@@ -6,6 +6,7 @@ let
     keymap = "fr";
     timezone = "Europe/Paris";
     username = "itm4n";
+    jython_standalone_url = "https://repo1.maven.org/maven2/org/python/jython-standalone/2.7.4/jython-standalone-2.7.4.jar";
   };
 in
 {
@@ -111,6 +112,7 @@ in
     nfs-utils
     ntp
     oh-my-zsh
+    openjdk17-bootstrap
     openssl
     openvpn
     oras # The ORAS project provides a way to push and pull OCI Artifacts to and from OCI Registries.
@@ -142,13 +144,16 @@ in
     wget
     which
     whois
+    xarchiver
     xcape # Utility to configure modifier keys to act as other keys
     xclip
     xorg.xhost
     yq-go # Portable command-line YAML processor
     zellij
+    zip
 
     # === XFCE ===
+    xfce.thunar-archive-plugin
     xfce.thunar-volman
     xfce.xfconf
     xfce.xfce4-appfinder
@@ -198,17 +203,20 @@ in
     hostapd
     hostapd-mana
     ike-scan
+    insomnia
     john
     macchanger
     masscan
     metasploit
     netdiscover
     nuclei
+    postman
     rdesktop
     samba4Full
     seclists
     sqlmap
     theharvester
+    tpm2-tools
     wfuzz
     wifite2
     wireshark-qt
@@ -351,7 +359,7 @@ in
     downloadJythonJar.text = ''
       if [ -d "$HOME/VirtShare/Tools" -a ! -f "$HOME/VirtShare/Tools/jython.jar" ];
       then
-        ${pkgs.wget}/bin/wget "https://repo1.maven.org/maven2/org/python/jython-standalone/2.7.3/jython-standalone-2.7.3.jar" -O "$HOME/VirtShare/Tools/jython.jar";
+        ${pkgs.wget}/bin/wget "${settings.jython_standalone_url}" -O "$HOME/VirtShare/Tools/jython.jar";
       fi
     '';
   };
