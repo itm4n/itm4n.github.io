@@ -194,7 +194,7 @@ in
     binwalk
     burpsuite-pro
     checksec
-    citrix_workspace
+    citrix_workspace_24_05_0
     dbeaver-bin
     dnsmasq
     ethtool # Utility for controlling network drivers and hardware (used by Ettercap)
@@ -369,7 +369,7 @@ in
   };
 
   #
-  # Advanced system configuration
+  # Advanced system configuration.
   #
 
   security.polkit.enable = true;
@@ -380,6 +380,12 @@ in
         }
     });
   '';
+
+  virtualisation.docker.enable = true;
+
+  #
+  # Service configuration.
+  #
 
   services.displayManager.autoLogin = {
     enable = true;
@@ -407,7 +413,43 @@ in
     # videoDrivers = [ "qxl" ];
   };
 
-  virtualisation.docker.enable = true;
+  # Source:
+  # - https://nixos.wiki/wiki/Samba
+  services.samba = {
+    enable = true;
+    settings = {
+      global = {
+        "workgroup" = "WORKGROUP";
+        "server string" = "Samba server";
+        "netbios name" = "samba";
+        "security" = "user";
+        "guest account" = "nobody";
+        "map to guest" = "bad user";
+      };
+      # Shared folder with anonymous access
+      "public" = {
+        "path" = "/home/${settings.username}/Public";
+        "browseable" = "no";
+        "read only" = "no";
+        "guest ok" = "yes";
+        "create mask" = "0644";
+        "directory mask" = "0755";
+        "force user" = "${settings.username}";
+        "force group" = "users";
+      };
+      # Shared folder with dummy authentication
+      "private" = {
+        "path" = "/home/${settings.username}/Public";
+        "browseable" = "yes";
+        "read only" = "no";
+        "guest ok" = "no";
+        "create mask" = "0644";
+        "directory mask" = "0755";
+        "force user" = "${settings.username}";
+        "force group" = "users";
+      };
+    };
+  };
 
   #
   # User profile customization.
