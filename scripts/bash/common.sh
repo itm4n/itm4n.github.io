@@ -11,10 +11,10 @@ SIGN_SUCCESS="[+]"
 SIGN_WARNING="[!]"
 SIGN_ERROR="[-]"
 
-# TOOL_IMPACKET_SECRETSDUMP="impacket-secretsdump"
-# TOOL_MASSCAN="masscan"
-# TOOL_NMAP="nmap"
-# TOOL_PYPYKATZ="pypykatz"
+TOOL_IMPACKET_SECRETSDUMP="impacket-secretsdump"
+TOOL_MASSCAN="masscan"
+TOOL_NMAP="nmap"
+TOOL_PYPYKATZ="pypykatz"
 
 FOLDER_NAME_NMAP="nmap"
 FOLDER_NAME_RECON="recon"
@@ -54,6 +54,15 @@ function test_is_root() {
     if [ $(id -u) -ne 0 ];
     then
         print_error "Current user is not root."
+        return 1
+    fi
+    return 0
+}
+
+function test_is_not_root() {
+    if [ $(id -u) -eq 0 ];
+    then
+        print_error "Current user is root."
         return 1
     fi
     return 0

@@ -50,7 +50,6 @@ fi
 
 # Hardcoded parameters
 AP_DHCP_RANGE="10.0.0.10,10.0.0.100"
-AP_DHCP_MASK="255.255.255.0"
 AP_DHCP_CIDR="24"
 AP_DHCP_GW="10.0.0.1"
 AP_DHCP_DNS="10.0.0.1"

@@ -183,6 +183,7 @@ in
 
     # === Python packages ===
     python311Packages.argcomplete
+    python311Packages.pip
 
     # === Pentest ===
     aircrack-ng
@@ -193,6 +194,7 @@ in
     binwalk
     burpsuite-pro
     checksec
+    citrix_workspace
     dbeaver-bin
     dnsmasq
     ethtool # Utility for controlling network drivers and hardware (used by Ettercap)
@@ -209,6 +211,7 @@ in
     masscan
     metasploit
     netdiscover
+    nmap
     nuclei
     postman
     rdesktop
@@ -353,6 +356,7 @@ in
       create_bash_script_symlink "pt_minidump_lsass"
       create_bash_script_symlink "pt_project"
       create_bash_script_symlink "pt_pwnbox"
+      create_bash_script_symlink "pt_venv"
     '';
 
     # Download jython.jar to Tools

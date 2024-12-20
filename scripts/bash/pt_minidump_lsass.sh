@@ -18,8 +18,6 @@ check_argc $# 1 || print_usage_and_exit
 ### END COMMON
 
 HOSTNAME=$1
-FILE_PATTERN_LSASS="${HOSTNAME}_lsass."
-# FILE_OUTPUT="./loot/${MACHINE_NAME}_lsass.txt"
 
 test_command_exists "pypykatz" || exit
 
