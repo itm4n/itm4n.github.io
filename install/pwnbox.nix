@@ -112,6 +112,7 @@ in
     nfs-utils
     ntp
     oh-my-zsh
+    onlyoffice-desktopeditors
     openjdk17-bootstrap
     openssl
     openvpn
@@ -507,7 +508,7 @@ in
         # Configure panel 1
         "panels/panel-1/icon-size" = 0; # Auto size
         "panels/panel-1/length" = 100; # 100% width
-        "panels/panel-1/plugin-ids" = [ 201 101 202 203 102 204 103 205 104 206 213 105 207 208 209 210 211 106 212 ];
+        "panels/panel-1/plugin-ids" = [ 201 101 202 203 102 204 103 205 104 206 213 105 207 209 210 211 106 212 ];
         "panels/panel-1/position" = "p=6;x=0;y=0";
         "panels/panel-1/position-locked" = true;
         "panels/panel-1/size" = 34;
