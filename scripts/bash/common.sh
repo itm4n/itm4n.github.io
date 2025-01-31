@@ -12,9 +12,6 @@ SIGN_WARNING="[!]"
 SIGN_ERROR="[-]"
 
 TOOL_IMPACKET_SECRETSDUMP="impacket-secretsdump"
-TOOL_MASSCAN="masscan"
-TOOL_NMAP="nmap"
-TOOL_PYPYKATZ="pypykatz"
 
 FOLDER_NAME_NMAP="nmap"
 FOLDER_NAME_RECON="recon"

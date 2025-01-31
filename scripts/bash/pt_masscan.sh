@@ -28,6 +28,8 @@ then
 fi
 
 test_file_exists "${FILE}" || exit
+test_command_exists "masscan" || exit
+test_command_exists "nmap" || exit
 test_directory_exists "./${FOLDER_NAME_NMAP}" || exit
 test_directory_exists "./${FOLDER_NAME_RECON}" || exit
 
@@ -36,7 +38,7 @@ OUT_FILE_MASSCAN="./${FOLDER_NAME_NMAP}/masscan_tcp_${PORT}_${TIMESTAMP}.txt"
 OUT_FILE_IP_PORT="./${FOLDER_NAME_NMAP}/ips_${PORT}_${TIMESTAMP}.txt"
 OUT_FILE_NMAP_PREFIX="./${FOLDER_NAME_NMAP}/nmap_${PORT}_${TIMESTAMP}"
 
-sudo $TOOL_MASSCAN -p${PORT} --open --rate=${RATE} -oL "${OUT_FILE_MASSCAN}" -iL "${FILE}"
+sudo masscan -p${PORT} --open --rate=${RATE} -oL "${OUT_FILE_MASSCAN}" -iL "${FILE}"
 print_info "Masscan result written to: ${OUT_FILE_MASSCAN}"
 if [ $? -eq 0 ]
 then

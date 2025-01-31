@@ -59,8 +59,10 @@ CONFIG_HOSTAPD="/tmp/ap_hostapd.conf"
 
 # Global flags
 FLAG_NETWORK_MANAGER_RUNNING=0
+FLAG_IP_FORWARDING_ENABLED=0
 FLAG_AP_INTERFACE_SET=0
 FLAG_NAT_RULE_SET=0
+FLAG_IP_FORWARDING_SET=0
 FLAG_USE_HOSTS_FILE=0
 
 trap ctrl_c INT
@@ -102,11 +104,41 @@ function check_initial_system_state() {
         FLAG_NETWORK_MANAGER_RUNNING=1
     fi
 
+    sysctl 'net.ipv4.ip_forward' | grep -q 'net.ipv4.ip_forward = 1'
+    if [ $? -eq 0 ];
+    then
+        FLAG_IP_FORWARDING_ENABLED=1
+    fi
+
     if [ -f "${CONFIG_DNSMASQ_HOSTS}" ];
     then
         print_info "Found custom hosts file: ${CONFIG_DNSMASQ_HOSTS}"
         FLAG_USE_HOSTS_FILE=1
     fi
+}
+
+function enable_ip_forwarding() {
+    if [ $FLAG_IP_FORWARDING_ENABLED -eq 0 ];
+    then
+        sysctl -w 'net.ipv4.ip_forward=1' 1>/dev/null
+        if [ $? -ne 0 ];
+        then
+            print_error "Failed to enable IP forwarding."
+            return 1
+        fi
+        FLAG_IP_FORWARDING_SET=1
+    fi
+    return 0
+}
+
+function disable_ip_forwarding() {
+    sysctl -w 'net.ipv4.ip_forward=0' 1>/dev/null
+    if [ $? -ne 0 ];
+    then
+        print_error "Failed to disabled IP forwarding."
+        return 1
+    fi
+    return 0
 }
 
 function add_nat_rule() {
@@ -148,6 +180,8 @@ function reset_ap_interface() {
 
 function prepare_system() {
     nb_errors=0
+
+    enable_ip_forwarding || ((nb_errors=nb_errors+1))
     add_nat_rule "iptables" || ((nb_errors=nb_errors+1))
 
     if [ $FLAG_NETWORK_MANAGER_RUNNING -eq 1 ];
@@ -247,6 +281,11 @@ function cleanup_and_exit() {
     if [ -f "${CONFIG_HOSTAPD}" ];
     then
         rm -f "${CONFIG_HOSTAPD}"
+    fi
+
+    if [ $FLAG_IP_FORWARDING_SET -eq 1 ];
+    then
+        disable_ip_forwarding
     fi
 
     if [ $FLAG_NAT_RULE_SET -eq 1 ];
