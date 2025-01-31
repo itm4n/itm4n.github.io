@@ -143,6 +143,7 @@ in
     vscode-extensions.gruntfuggly.todo-tree
     vscode-extensions.mechatroner.rainbow-csv
     wget
+    wirelesstools
     which
     whois
     xarchiver
@@ -205,12 +206,8 @@ in
     hashcat
     hostapd
     hostapd-mana
-    ike-scan
-    insomnia
-    john
     macchanger
     masscan
-    metasploit
     netdiscover
     nmap
     nuclei
