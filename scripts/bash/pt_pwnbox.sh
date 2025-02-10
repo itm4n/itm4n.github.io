@@ -85,10 +85,11 @@ function action_install() {
 }
 
 function action_update() {
-    helper_delete_old || return 1
+    helper_rebuild "${1}" || return 1
     helper_update_channels || return 2
     helper_rebuild "${1}" || return 3
-    helper_update_pipx || return 4
+    helper_delete_old || return 4
+    helper_update_pipx || return 5
     return 0
 }
 
