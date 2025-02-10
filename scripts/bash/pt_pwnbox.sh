@@ -9,13 +9,15 @@ source "$COMMON" || exit
 ### END SCRIPT HEADER
 
 ACTION_INSTALL="install"
+ACTION_DELETE="delete"
+ACTION_LIST="list"
 ACTION_UPDATE="update"
 ACTION_UPGRADE="upgrade"
 ACTION_REBUILD="rebuild"
 
 ### BEGIN COMMON
 function print_usage_and_exit() {
-    print_info "Usage: ${SCRIPT_NAME} <${ACTION_INSTALL}|${ACTION_UPDATE}|${ACTION_REBUILD}>"
+    print_info "Usage: ${SCRIPT_NAME} <${ACTION_INSTALL}|${ACTION_UPDATE}|${ACTION_REBUILD}|${ACTION_LIST}|${ACTION_DELETE}>"
     exit
 }
 
@@ -72,8 +74,20 @@ function helper_rebuild() {
 
 function helper_delete_old() {
     test_command_exists nix-collect-garbage || return 1
-    print_info "Deleting old configurations..."
-    nix-collect-garbage --delete-older-than 30d || return 2
+    if [ $# -ge 1 ];
+    then
+        print_info "Deleting old configurations..."
+        nb_days_arg="${1}d"
+    else
+        print_info "Deleting configurations older than 30 days..."
+        nb_days_arg="30d" # older than 30 days by default
+    fi
+    nix-collect-garbage --delete-older-than "${nb_days_arg}" || return 2
+    return 0
+}
+
+function helper_list() {
+    nixos-rebuild list-generations || return 1
     return 0
 }
 
@@ -98,6 +112,21 @@ function action_rebuild() {
     return 0
 }
 
+function action_list() {
+    helper_list || return 1
+    return 0
+}
+
+function action_delete() {
+    if [ -z "${1}" ];
+    then
+        helper_delete_old || return 1
+    else
+        helper_delete_old "${1}" || return 1
+    fi
+    return 0
+}
+
 test_is_root || exit 1
 test_file_exists $CONFIG_PATH || exit 2
 
@@ -117,6 +146,14 @@ case $1 in
 
     $ACTION_REBUILD)
         action_rebuild "${CONFIG_PATH}" || exit 3
+        ;;
+
+    $ACTION_LIST)
+        action_list
+        ;;
+
+    $ACTION_DELETE)
+        action_delete "${2}"
         ;;
 
     *)
