@@ -81,7 +81,7 @@ in
   environment.systemPackages = with pkgs; [
 
     # === Utils ===
-    azure-cli # Azure command line interface
+    # azure-cli # Azure command line interface
     chroma
     chromium
     cifs-utils # Required to mount SMB shares
@@ -120,10 +120,6 @@ in
     p7zip
     podman # A program for managing pods, containers and container images.
     powershell
-    python311 # Python interpreter
-    python311Packages.pip # Pip installer
-    python311Packages.pycryptodome
-    python311Packages.pycryptodomex # Self-contained cryptographic library
     qemu-utils # Provides commands such as 'qemu-nbd' and 'qemu-img'
     ripgrep
     rlwrap
@@ -184,8 +180,9 @@ in
     flat-remix-icon-theme
 
     # === Python packages ===
-    python311Packages.argcomplete
-    python311Packages.pip
+    python312Full # Python interpreter
+    python312Packages.argcomplete
+    python312Packages.pip # Pip installer
 
     # === Pentest ===
     aircrack-ng
@@ -193,7 +190,6 @@ in
     awscli2
     baobab
     bettercap
-    binwalk
     burpsuite-pro
     checksec
     citrix_workspace_24_05_0
@@ -216,10 +212,9 @@ in
     samba4Full
     seclists
     sqlmap
-    theharvester
     tpm2-tools
     wfuzz
-    wifite2
+    # wifite2
     wireshark-qt
     wordlists
     wpscan
@@ -296,7 +291,7 @@ in
       text = ''
         username=clement
         domain=WORKGROUP
-        passwprd=samba
+        password=samba
       '';
       mode = "0440";
     };
@@ -350,6 +345,7 @@ in
       }
 
       create_bash_script_symlink "pt_ap"
+      create_bash_script_symlink "pt_gw"
       create_bash_script_symlink "pt_masscan"
       create_bash_script_symlink "pt_minidump_lsass"
       create_bash_script_symlink "pt_project"
@@ -390,7 +386,6 @@ in
     user = "${settings.username}";
   };
   services.locate.enable = true;
-  services.locate.localuser = null;
   services.locate.package = pkgs.mlocate;
   services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true;
