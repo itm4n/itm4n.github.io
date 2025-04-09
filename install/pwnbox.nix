@@ -146,6 +146,7 @@ in
     xcape # Utility to configure modifier keys to act as other keys
     xclip
     xorg.xhost
+    xorg.xkill
     yq-go # Portable command-line YAML processor
     zellij
     zip
@@ -207,12 +208,15 @@ in
     netdiscover
     nmap
     nuclei
+    pacu
     postman
     rdesktop
+    s3scanner
     samba4Full
     seclists
     sqlmap
     tpm2-tools
+    trufflehog
     wfuzz
     # wifite2
     wireshark-qt
