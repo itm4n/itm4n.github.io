@@ -143,3 +143,5 @@ Start-ScheduledTask -TaskPath "\Microsoft\Windows\Application Experience" -TaskN
 The term "*vulnerability*" is obviously not appropriate here because the actual vulnerability lies in the fact that a folder with weak permissions was inserted in the system's `PATH` environment variable. Nonetheless, it is possible to avoid such a behavior by constructing the absolute path of `powershell.exe` before calling `CreateProcess`, rather than relying on a potentially hijackable search order.
 
 That's all for this post, it was a rather short one for once. Back to my main project now... :wink:
+
+***This article was originally posted on SCRT's blog [here](https://blog.scrt.ch/2025/05/20/hijacking-the-windows-marebackup-scheduled-task-for-privilege-escalation/).***
