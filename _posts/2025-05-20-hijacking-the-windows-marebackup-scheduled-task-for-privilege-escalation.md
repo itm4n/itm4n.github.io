@@ -12,7 +12,7 @@ As I was working on a semi-automated research project on an unrelated subject, I
 ![Process Monitor showing the execution of PowerShell by `CompatTelRunner.exe`](/assets/posts/2025-05-20-hijacking-the-windows-marebackup-scheduled-task-for-privilege-escalation/procmon-powershell-search-order.png)
 *Process Monitor showing the execution of PowerShell by `CompatTelRunner.exe`*
 
-We have an executable named `CompatTelRunner.exe`, running as `NT AUTHORITY\SYSTEM`, and executing PowerShell, apparently without specifying its absolute path because we can see that it uses the typical executable search order documented [here](https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessw).
+We have an executable named `CompatTelRunner.exe`, running as `NT AUTHORITY\SYSTEM`, and executing PowerShell, apparently without specifying its absolute path because we can see that it uses the typical executable search order [documented here](https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessw).
 
 The Python `PATH` entries are highlighted here because Python was known in the past for inserting folders configured with (default) weak permissions in the system's `PATH` environment variable. This issue has since been addressed in the Python installer, and therefore this behavior wouldn't be exploitable here.
 
@@ -95,7 +95,7 @@ The result of the `icacls` command shows that we have full control over the sche
 
 So, no actual vulnerability here, but this does explain why we can start the scheduled task manually without administrator privileges.
 
-One question remains, what about the payload? Well, we don't really care about preserving the original feature. It's just a scheduled task for collecting telemetry data after all, it's not system-critical, so we can execute whatever we want without having to ensure that the PowerShell commands are actually executed. In addition, the `Schedule` service will use the default `SYSTEM` token, which has `SeTcbPrivilege` enabled. Therefore, I opted for my personal favorite: spawning a `SYSTEM` console on the user's desktop (original code [here](https://googleprojectzero.blogspot.com/2016/01/raising-dead.html)).
+One question remains, what about the payload? Well, we don't really care about preserving the original feature. It's just a scheduled task for collecting telemetry data after all, it's not system-critical, so we can execute whatever we want without having to ensure that the PowerShell commands are actually executed. In addition, the `Schedule` service will use the default `SYSTEM` token, which has `SeTcbPrivilege` enabled. Therefore, I opted for my personal favorite: spawning a `SYSTEM` console on the user's desktop ([original code](https://googleprojectzero.blogspot.com/2016/01/raising-dead.html)).
 
 ```cpp
 HANDLE hToken = NULL, hTokenDup = NULL;
@@ -144,4 +144,4 @@ The term "*vulnerability*" is obviously not appropriate here because the actual 
 
 That's all for this post, it was a rather short one for once. Back to my main project now... :wink:
 
-***This article was originally posted on SCRT's blog [here](https://blog.scrt.ch/2025/05/20/hijacking-the-windows-marebackup-scheduled-task-for-privilege-escalation/).***
+***This article was originally posted on [SCRT's blog](https://blog.scrt.ch/2025/05/20/hijacking-the-windows-marebackup-scheduled-task-for-privilege-escalation/).***
