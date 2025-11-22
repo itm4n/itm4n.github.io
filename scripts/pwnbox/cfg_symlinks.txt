@@ -1,0 +1,8 @@
+pt_domains_alive=web/domains_alive.sh
+pt_domains_in_scope=web/domains_in_scope.sh
+pt_masscan=network/masscan.sh
+pt_nmap_host=network/nmap_host.sh
+pt_project=system/project.sh
+pt_router=network/router.sh
+pt_update=pwnbox/install.sh
+pt_venv=system/venv.sh

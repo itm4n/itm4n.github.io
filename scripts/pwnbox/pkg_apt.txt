@@ -1,0 +1,9 @@
+azurehound
+dirsearch
+enum4linux-ng
+freerdp3-wayland
+freerdp3-x11
+golang-go
+hostapd
+krb5-user
+odat

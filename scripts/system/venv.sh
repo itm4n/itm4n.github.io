@@ -1,23 +1,23 @@
-#!/usr/bin/env bash
+#!/usr/bin/env -S bash --posix
 
-### BEGIN SCRIPT HEADER
+### BEGIN INCLUDE
 SCRIPT_PATH=$(readlink -f "${BASH_SOURCE[0]}")
-DIR_SCRIPT=$(dirname "${SCRIPT_PATH}")
-COMMON="${DIR_SCRIPT}/common.sh"
-source "$COMMON" || exit
-### END SCRIPT HEADER
+SCRIPT_NAME=$(basename "${SCRIPT_PATH}")
+SCRIPT_DIR=$(dirname "${SCRIPT_PATH}")
+source "${SCRIPT_DIR}/../common.sh" || exit
+### END INCLUDE
 
-function check_prerequisites() {
+function venv_check_prerequisites() {
     nb_errors=0
 
-    test_is_not_root || ((nb_errors=nb_errors+1))
-    test_command_exists "python" || ((nb_errors=nb_errors+1))
-    test_command_exists "virtualenv" || ((nb_errors=nb_errors+1))
+    util_check_is_not_root || ((nb_errors=nb_errors+1))
+    util_check_command_existence "python" || ((nb_errors=nb_errors+1))
+    util_check_command_existence "virtualenv" || ((nb_errors=nb_errors+1))
 
     return $nb_errors
 }
 
-function create_virtual_env_cwd() {
+function venv_create_virtual_env_cwd() {
     nb_errors=0
 
     # The option '--copies' is used here to copy required binaries instead of
@@ -36,5 +36,5 @@ function create_virtual_env_cwd() {
     return 0
 }
 
-check_prerequisites || exit
-create_virtual_env_cwd || exit
+venv_check_prerequisites || exit
+venv_create_virtual_env_cwd || exit
