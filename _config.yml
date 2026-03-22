@@ -36,6 +36,7 @@ social:
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
   name: itm4n
   email: itm4n@contoso.com             # change to your email address
+  fediverse_handle: '@itm4n@infosec.exchange' # fill in your fediverse handle. E.g. "@username@domain.com"
   links:
     # The first element serves as the copyright owner's link
     - https://infosec.exchange/@itm4n      # change to your Twitter homepage
