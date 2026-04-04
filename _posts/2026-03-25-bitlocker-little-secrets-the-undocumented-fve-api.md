@@ -283,7 +283,7 @@ These combinations could have been guessed from the function names, but at least
 
 ## Conclusion
 
-I made the capture filter and my proof-of-concept both publicly available on [GitHub](https://github.com/itm4n/Pentest-Windows/BitLockerFveApi). I won't upload the header file to avoid a potential DMCA strike, even though it is already publicly available...
+I made the capture filter and my proof-of-concept both publicly available on [GitHub](https://github.com/itm4n/Pentest-Windows/tree/main/BitLockerFveApi). I won't upload the header file to avoid a potential DMCA strike, even though it is already publicly available...
 
 ![Proof-of-concept showing BitLocker authentication flags](/assets/posts/2026-04-02-bitlocker-little-secrets-the-undocumented-fve-api/poc-bitlocker-ui-replica+flags.png)
 *Proof-of-concept showing BitLocker authentication flags*
